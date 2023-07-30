@@ -11,15 +11,11 @@ public class ScannerCafe {
 	int menu;
 	int num;
 	int money;
-	int incoin = 0;
 	final int AME = 3000; //final을 쓰면 값을 바꾸지 못한다. //public을 쓰면 어디서는 사용가능하다
 	final int CAFE = 3500;
 	final int MOCA = 4000;
 	final int JUICE = 5000;
-	
-	ArrayList<Integer> ar = new ArrayList<>();
-	
-	
+
 	public void start() {
 		Scanner scan = new Scanner(System.in);
 		
@@ -30,18 +26,16 @@ public class ScannerCafe {
 			System.out.println("-----메뉴를 추가로 주문하시겠습니까?(예or아니요)-------");
 			
 			String a1 = scan.next();
-			if (a1.equals("아니요")) {
+			if (a1.equals("2")) {
 				System.out.println("주문이 완료되었습니다.");
+				System.out.println("총 매출액 : " + sum);
 				break;
-			} else if (a1.equals("예")) {
+			} else if (a1.equals("1")) {
 				System.out.println("다시주문");
 				continue;
 			}
-
 		}
-	
 	}
-	
 	public void input(Scanner scan) {
 		
 		System.out.println("1.아메리카노 2.카페라떼 3.카페모카 4.과일주스");
@@ -56,19 +50,31 @@ public class ScannerCafe {
 
 		System.out.println("============");
 		System.out.println("입금액 : " + money);
-		
-		ar.add(AME);
-		ar.add(CAFE);
-		ar.add(JUICE);
-		ar.add(MOCA);
-		
-		for (int i = 0; i <= ar.size(); i++) {
-			int a = ar.get(i) * num;
-			if (menu == i) {
-				System.out.println("판매액 : " + a);
-				System.out.println("잔돈 : " + (money - a));
-				}
+
+		if (menu == 1) {
+		System.out.println("판매액 : " + AME * num);
+		System.out.println("잔돈 : " + (money - (AME * num)));
+		}else if (menu == 2) {
+			System.out.println("판매액 : " + CAFE * num);
+			System.out.println("잔돈 : " + (money - (CAFE * num)));
+		}else if (menu == 3) {
+			System.out.println("판매액 : " + MOCA * num);
+			System.out.println("잔돈 : " + (money - (MOCA * num)));
+		}else if (menu == 4) {
+			System.out.println("판매액 : " + JUICE * num);
+			System.out.println("잔돈 : " + (money - (JUICE * num)));
 		}
+
+        if (menu == 1) {
+            sum += AME * num;
+         } else if (menu == 2) {
+            sum += CAFE * num;
+         } else if (menu== 3) {
+            sum += MOCA * num;
+         } else if (menu == 4) {
+            sum += JUICE * num;
+         }
+        
 		/*
 		 **if문 대신 스위치문도 사용 가능하다.
 		 switch (menu) {
