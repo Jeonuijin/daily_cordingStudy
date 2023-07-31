@@ -16,9 +16,6 @@ import java.util.Scanner;
 	다시 도전하시겠습니까?(y,n) 
 	---------------------------
 	*/
-
-
-
 public class GuessNumberGame {
 	static int random1;
 	static Scanner scan = new Scanner(System.in);
@@ -28,7 +25,6 @@ public class GuessNumberGame {
 	public static void main(String[] args) {
 
 		while (true) {
-
 			for (int i = 1; i <= 5; i++) {
 				random1 = (int) (Math.random() * 99 + 1);
 				if (i <= 4) {
@@ -39,9 +35,7 @@ public class GuessNumberGame {
 				} else if (i == 5) {
 					startGame1();
 				}
-
 			}
-
 			System.out.println("숫자맞추기를 계속하시겠습니까? 1.예 2.아니요");
 
 			String a1 = scan.next();
@@ -53,9 +47,7 @@ public class GuessNumberGame {
 				continue;
 			}
 		}
-
 	}
-
 	static void startGame() {
 
 		System.out.println("숫자 선택하기 : ");
@@ -75,11 +67,9 @@ public class GuessNumberGame {
 			System.out.println("성공 !! " + count + "번만에 맞췄습니다");
 		}
 	}
-
 	static void startGame1() {
 		System.out.println("마지막 기회");
 		int number;
-
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("숫자 선택하기 : ");
