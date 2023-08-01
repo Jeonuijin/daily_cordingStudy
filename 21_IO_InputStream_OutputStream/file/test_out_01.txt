@@ -1,4 +1,0 @@
-HELO
-Hello Java!!!
-Hello Java!!!
-Java!!!
