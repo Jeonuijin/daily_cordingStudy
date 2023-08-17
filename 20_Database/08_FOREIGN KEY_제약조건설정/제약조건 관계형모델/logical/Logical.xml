@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="F8C0EA5E-7442-D829-C7FB-D359D06579BB" mainViewID="CFDB3988-56C9-1D75-DA0E-ACF19367E955">
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 00:53:40 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

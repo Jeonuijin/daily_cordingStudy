@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="E5C86FD7-8898-86AB-10A3-21D1C45AF2CB">
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 00:53:40 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

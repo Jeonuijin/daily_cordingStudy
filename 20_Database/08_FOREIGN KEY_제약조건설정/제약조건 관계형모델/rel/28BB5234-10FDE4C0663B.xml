@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="28BB5234-AB6E-7002-76C2-10FDE4C0663B" mainViewID="822B4ED9-A4A3-BB28-1964-0491F31AACB8">
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:37:16 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
+<importConnectionStamps>
+<importConnectionStamp class="oracle.dbtools.crest.imports.DBConnectionStamp">
+<connName>MADANG</connName>
+<connUser>MADANG</connUser>
+<connType>1</connType>
+</importConnectionStamp>
+</importConnectionStamps>
+</relationalModel>

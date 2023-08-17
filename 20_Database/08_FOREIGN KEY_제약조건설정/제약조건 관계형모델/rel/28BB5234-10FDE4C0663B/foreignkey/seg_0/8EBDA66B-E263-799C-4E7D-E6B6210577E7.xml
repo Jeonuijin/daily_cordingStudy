@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="8EBDA66B-E263-799C-4E7D-E6B6210577E7" containerWithKeyObject="11399C46-494B-E854-A4F9-EDC4FA75B033" localFKIndex="8891AD0C-B67D-C3BC-DB56-B1CE77A65739" name="FK_EMP03_DEPTNO">
+<sourceConnName>MADANG</sourceConnName>
+<sourceObjSchema>MADANG</sourceObjSchema>
+<sourceObjName>FK_EMP03_DEPTNO</sourceObjName>
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<referredTableLongName>MADANG.DEPT</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>3965EEFC-14DE-7ED0-2877-D46EADC77AFC</referredTableID>
+<keyObject>0B0AC037-A8B1-E5FB-C4A0-A2DBC74DDBBE</keyObject>
+<referredKeyID>0B0AC037-A8B1-E5FB-C4A0-A2DBC74DDBBE</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

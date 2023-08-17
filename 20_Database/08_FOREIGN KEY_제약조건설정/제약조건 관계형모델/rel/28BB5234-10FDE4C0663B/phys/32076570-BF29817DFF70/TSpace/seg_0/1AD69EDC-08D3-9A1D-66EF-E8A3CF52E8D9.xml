@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableSpaceOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TableSpaceOraclev10g" name="USERS" directorySegmentName="seg_0" id="1AD69EDC-08D3-9A1D-66EF-E8A3CF52E8D9">
+<sourceConnName>MADANG</sourceConnName>
+<sourceObjSchema>MADANG</sourceObjSchema>
+<sourceObjName>USERS</sourceObjName>
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<emUniformSize>0</emUniformSize>
+<extentManagement>LOCAL</extentManagement>
+</TableSpaceOraclev10g>

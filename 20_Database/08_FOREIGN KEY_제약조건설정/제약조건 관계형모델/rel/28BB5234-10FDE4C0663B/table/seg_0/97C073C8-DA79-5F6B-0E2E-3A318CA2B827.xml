@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="97C073C8-DA79-5F6B-0E2E-3A318CA2B827" schemaObject="ECAEB7D2-18A6-0317-D2B4-AB13203DAE11" name="EMP02">
+<sourceConnName>MADANG</sourceConnName>
+<sourceObjSchema>MADANG</sourceObjSchema>
+<sourceObjName>EMP02</sourceObjName>
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EMPNO" id="69AECD8C-8ED3-9011-A30C-DDCB267D175D">
+<sourceConnName>MADANG</sourceConnName>
+<sourceObjSchema>EMP02</sourceObjSchema>
+<sourceObjName>EMPNO</sourceObjName>
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,5,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENAME" id="EFFEB32E-A9C6-ADB1-BC69-2B16379FDC21">
+<sourceConnName>MADANG</sourceConnName>
+<sourceObjSchema>EMP02</sourceObjSchema>
+<sourceObjName>ENAME</sourceObjName>
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="JOB" id="49CA8E36-6436-4E93-9A61-B40B12FC049A">
+<sourceConnName>MADANG</sourceConnName>
+<sourceObjSchema>EMP02</sourceObjSchema>
+<sourceObjName>JOB</sourceObjName>
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 BYTE</dataTypeSize>
+<ownDataTypeParameters>10 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEPTNO" id="09A6A424-5D9B-EC5D-AF52-1054CE4F1EA7">
+<sourceConnName>MADANG</sourceConnName>
+<sourceObjSchema>EMP02</sourceObjSchema>
+<sourceObjName>DEPTNO</sourceObjName>
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 BYTE</dataTypeSize>
+<ownDataTypeParameters>10 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2D3D7DAB-48A8-8008-A27E-17F8DE36530A" referredColumn="AD330464-082F-9EE5-0FDB-C0032F58FB90"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="89B01FEE-35BB-82CC-3003-FC5004D80BF7" schemaObject="ECAEB7D2-18A6-0317-D2B4-AB13203DAE11" name="EMP02_PK">
+<sourceConnName>MADANG</sourceConnName>
+<sourceObjSchema>MADANG</sourceObjSchema>
+<sourceObjName>SYS_C007022</sourceObjName>
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="69AECD8C-8ED3-9011-A30C-DDCB267D175D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3416E60B-22CE-586F-05E8-7E3E47A2C7D8" name="EMP02_EMPNO_FK">
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="09A6A424-5D9B-EC5D-AF52-1054CE4F1EA7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

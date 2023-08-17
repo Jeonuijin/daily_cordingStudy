@@ -1,0 +1,39 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="DEPT" directorySegmentName="seg_0" id="3965EEFC-14DE-7ED0-2877-D46EADC77AFC">
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<schemaObject>ECAEB7D2-18A6-0317-D2B4-AB13203DAE11</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>F33C6228-6D0C-D070-439F-E20E3FB571FC</segment>
+<tableSpace>1AD69EDC-08D3-9A1D-66EF-E8A3CF52E8D9</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="NAME" id="11C585CE-44BC-EDFC-47B3-C304C2F928EE">
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID" id="AD330464-082F-9EE5-0FDB-C0032F58FB90">
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DEPT_PK" id="0B0AC037-A8B1-E5FB-C4A0-A2DBC74DDBBE">
+<createdBy>ITWILL</createdBy>
+<createdTime>2023-08-17 06:39:44 UTC</createdTime>
+<ownerDesignName>제약조건 관계형모델</ownerDesignName>
+<schemaObject>ECAEB7D2-18A6-0317-D2B4-AB13203DAE11</schemaObject>
+<segment>B83EB377-AAB7-0F8C-6183-BEBDE3CDFA93</segment>
+<tableSpace>1AD69EDC-08D3-9A1D-66EF-E8A3CF52E8D9</tableSpace>
+<indexSegment>B83EB377-AAB7-0F8C-6183-BEBDE3CDFA93</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>
