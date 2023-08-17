@@ -26,19 +26,34 @@ DROP INDEX 인덱스명;
 ALTER INDEX 인덱스명 REBUILD;
 ALTER [UNIQUE] INDEX 인덱스명 [ON 테이블명 (컬럼명, ...)] REBUILD;
 ************************************/
+-- 인덱스 생성 : BOOK 테이블의 출판사(PUBLISHER) 컬럼에 IX_BOOK_PUB 인덱스 만들기
+CREATE INDEX IX_BOOK_PUB ON BOOK (PUBLISHER);
+SELECT * FROM BOOK ORDER BY PUBLISHER;
+SELECT * FROM BOOK WHERE PUBLISHER  = '굿스포츠'; --인덱스 사용검색/인덱스를 이용하면 찾는속도가 더 빠르다
+SELECT * FROM BOOK WHERE BOOKNAME = '축구의 이해'; --인덱스 사용X(F10눌러서 확인가능)
+--인덱스가 적용되지 않으면 하나하나 순차비교하여 속도가 느림
 
+-- 인덱스 생성 : 2개 컬럼기준
+-- BOOK 테이블의 PUBLISHER, PRICE 컬럼을 대상으로 IX_BOOK_PUB_PRICE 인덱스
+CREATE INDEX IX_BOOK_PUB_PRICE ON BOOK (PUBLISHER, PRICE); --2번째 이후로 오는 인덱스 컬럼은 단독으로 인덱스값을 사용하지 못한다.
+SELECT * FROM BOOK ORDER BY PUBLISHER, PRICE;
+SELECT * FROM BOOK WHERE PUBLISHER = '대한미디어' AND PRICE >30000; --인덱스 사용
+SELECT * FROM BOOK WHERE PUBLISHER = '굿스포츠'; --인덱스 사용
+SELECT * FROM BOOK WHERE PRICE >= 20000; --인덱스 사용 안함(안됨)
+SELECT * FROM BOOK WHERE PRICE >= 7000 AND PUBLISHER = '굿스포츠'; --인덱스 사용
+------------------------------------
+--(주의) 인덱스가 있음에도 적용되지 않는 경우
+---- LIKE 사용시 또는 데이터가 가공된 경우
+SELECT * FROM BOOK WHERE PUBLISHER LIKE '대한%'; --인덱스 사용
+SELECT * FROM BOOK WHERE PUBLISHER LIKE '%미디어'; --인덱스 사용못함(안함)
+SELECT * FROM BOOK WHERE PUBLISHER LIKE '%대한%'; --인덱스 적용안함
 
+-- 원본데이터를 가공하는 경우(인덱스 적용안됨)
+SELECT * FROM BOOK WHERE UPPER(PUBLISHER) = 'PEARSON'; --적용못함
+SELECT * FROM BOOK WHERE SUBSTR(PUBLISHER, 1, 2) = '대한'; --적용못함(안함)
 
-
-
-
-
-
-
-
-
-
-
+--인덱스 삭제
+DROP INDEX IX_BOOK_PUB; --다른 유저에서 삭제할때는 인덱스 명 앞에 유저이름을 적어준다.
 
 --======================================
 /* *** 인덱스 실습 ****************************
@@ -54,8 +69,23 @@ ALTER [UNIQUE] INDEX 인덱스명 [ON 테이블명 (컬럼명, ...)] REBUILD;
 (5) (3)번에서 생성한 인덱스를 삭제하시오.
 ******************************************/
 
+--(1) 다음 SQL 문을 수행해본다.
+SELECT name FROM Customer WHERE name LIKE '박세리';    
+    
+--(2) 실행 계획을 살펴본다. 실행 계획은 [F10]키를 누른 후 
+    --[계획 설명]탭을 선택하면 표시된다.
+    
+--(3) Customer 테이블에 name으로 인덱스(ix_customber_name)를 생성하시오. 
+    --생성 후 (1)번의 질의를 다시 수행하고 실행 계획을 살펴보시오.
+CREATE INDEX IX_CUSTOMER_NAME ON CUSTOMER (NAME);
+SELECT name FROM Customer WHERE name LIKE '박세리';  
 
+--(4) 같은 질의에 대한 두 가지 실행 계획을 비교해보시오.
+--INDEX를 만들기 전에는 값을 하나하나 비교하며 결과값을 찾았지만 INDEX를 만들고 나서는
+--값을 찾기 위해 만들어 놓은 INDEX를 사용하여 결과값을 찾은 것을 실행계획을 통해 보여진다.
 
+--(5) (3)번에서 생성한 인덱스를 삭제하시오.
+DROP INDEX IX_CUSTOMER_NAME;
 
 
 
