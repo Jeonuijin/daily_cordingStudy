@@ -1,0 +1,114 @@
+9/5 (화)
+
+ctrl + shft + / : 주석처리
+
+*table
+table, tr, th, td 태그로 구성
+tr : 보이지않는 열(한줄), 추가할 수록 열이 추가됨
+th : 각 항목,칼럼(진하게 표시됨), 기본이 왼쪽정렬
+td : 실제 표에 들어가는 데이터
+-표합치기
+rowspan : 줄(row)단위 합하기
+colspan : 컬럼 (column)단위 합하기
+
+*표 넓이 지정
+  <colgroup>
+            <col width = "100">
+            <col width = "100">
+            <col width = "100">
+            <col width = "100">
+            <col width = "100">
+   </colgroup>
+  --> 이런식으로 테이블코드 밑에 칼럼그룹의 넓이를 각각 지정해주는 코드를 추가한다.
+  
+*스타일(CSS)
+ <style>
+        table {border-collapse: collapse;} //테이블 테두리 한줄로 만들기
+        table, th, td {border: 2px solid black;}	//테이블, th, td의 테두리 설정
+        tr {height: 40px;}	//tr칸의 높이 설정
+        th{background-color: lightgray;}	//배경색 주기
+        td {text-align: center;}	//td 칸 데이터 센터로 맞추기
+    </style>
+--> title태그 밑에 작성
+
+*thead, tbody, tfoot 태그
+ : thead와 tbody, tfoot태그를 쓰게 되면
+   작성 순서와는 상관없이 차례대로 thead, tbody, tfoot 순으로 표시된다.
+*caption태그
+<caption>[사용자정보]</caption>
+ : 테이블의 제목을 달아줄 수 있다. 테이블태그 밑에 작성
+ 
+-그림(사진)에 캡션설정
+<figure>
+    <figcaption>이력서사진(위)</figcaption>
+    <img src="imgs/photo.png" width = "200">
+    <figcaption>이력서사진(아래)</figcaption>
+</figure>
+ : 그림에도 캡션설정 가능, 그림은 위아래 둘다 적용이 가능하다.
+ 
+*iframe
+<iframe src=""></iframe>
+ : 내가 만든 프레임속에 넣고 싶은 웹페이지를 넣을 수 있다.
+ 
+*audio & video
+
+
+*form
+ : 웹 페이지에서의 입력 양식을 의미
+
+<form>		//form 태그
+<fieldset>  	// <form> 요소에서 연관된 요소들을 하나의 그룹으로 묶을 때 사용
+아이디 : <input type="text" name="userid" placeholder="아이디"><br>
+패스워드 : <input type="password" name="password" placeholder="암호(영문숫자 5~20)"
+maxlength="20">	
+					
+</fieldset>
+        
+<input type="submit" value="전송(요청)">
+</form>
+//name의 의미는 아이디와 비밀번호 값이 백엔드서버로 전송될 때 userid=jesjo&password=1234 이런식으로 파라미터 값으로 표시되어 전송된다.
+//placeholder는 입력 필드에 사용자가 적절한 값을 입력할 수 있도록 도와주는 도움말을 쓸 수 있는 태그
+//maxlength는 최대길이를 설정할 수 있다.(ex)비밀번호 길이설정
+---------------------------
+<fieldset>
+<legend>가입자 정보</legend>
+성명 : <input type="text" name="name"><br>
+나이 : <input type="number" name="age" value="20" min="1" max="150" step="1">
+</fieldset>  
+//value : 초기값을 설정할 수 있다.
+
+*radio, checkbox
+-radio
+<input type="radio" name="gender" value="M" checked>남자
+<input type="radio" name="gender" value="W">여자
+-->name을 같은이름으로 줘야 둘중 하나 선택이 가능하다. 다르게 설정하면 둘다 선택됨,
+   radio는 checkbox와 달리 한번 선택 후 다시 선택해도 취소가 안된다.
+   checked는 디폴트값으로 선택이 되어진다.
+   
+-label연결하기
+<input type="checkbox" name="hobby2" value="vaseball" id="baseball2">
+<label for="baseball2">야구</label>
+-->아이디값으로 라벨을 연결해주면 라벨 값을 클릭해도 체크박스에 체크가 된다.
+
+*select
+<select name="car" multiple>
+	<optgroup label="국외">
+    <option>BMW</option>
+    <option value="benz">벤츠</option>
+	</optgroup>
+</select>
+-->두번째 값인 벤츠의 옵션에서 value값을 주지 않으면 서버에 전송될 때 위에 BMW의 값으로 전송된다.
+   multiple : 여러개 선택 가능/ 없으면 하나만 선택
+   optgroup : 관련된 값을 한 그룹에 묶을 수 있다. label사용
+   
+*textarea 태그
+<textarea name="selfinfo" rows="10" cols="50"></textarea><br>
+-row와 cols속성
+ : 텍스트 크기 기준으로 rows는 (rows값)5줄, cols는 (cols값)40자를 입력할 수 있는 공간을 제공한다.
+   입력된 텍스트가 40자 이상 입력되면 다음줄로 자동으로 내려가고 (rows값)5줄 이상넘어가면 자동 스크롤이 생긴다.
+   textarea를 작성할때는 태그를 붙여서 작성한다. 그렇지 않으면 줄바꿈으로 인해 커서가 처음이 아닌 다른곳으로 가게된다.
+   
+*progress, meter, input range
+progress : 진행중인 상태값을 의미
+meter : 득표율과 같이 전체중에 어느정도를 차지하는지 표시
+range : 값 입력, min과 max값 설정, step(몇씩 커지는지)
