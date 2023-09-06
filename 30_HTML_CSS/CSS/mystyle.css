@@ -1,0 +1,30 @@
+<style>
+        h1 {background-color: red; }
+        h2 {background-color: yellow; }
+        
+        h2 {background-color: yellow; }
+        
+        /* 선택자 class 사용 : .(점) */
+        .red {background-color: ; }
+        .green {background-color: green; }
+        .yellow {background-color: blue; }
+        
+        /* 선택자 id 사용 : #(샵) */
+        #yellow {background-color: purple; }
+        #orange {background-color: orange; }
+        
+        /* 선택자 우선순위 : id, class, 태그(tag) 순으로 적용됨*/
+        p {
+            background-color: gray;
+            border: 2px solid black;
+        }
+        div {
+            border: 2px dotted red;
+        }
+        div > p { background-color: pink;}
+        
+        p.green { background-color: aqua; }
+        
+        /* p태그 + 클래스명 aqua 적용된 선택자는
+        클래스명 green 선택자보다 가중치가 높다.*/
+    </style>

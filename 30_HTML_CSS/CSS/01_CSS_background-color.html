@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        h1 {background-color: red; }
+        h2 {background-color: yellow; }
+        
+        h2 {background-color: yellow; }
+        
+        /* 선택자 class 사용 : .(점) */
+        .red {background-color: ; }
+        .green {background-color: green; }
+        .yellow {background-color: blue; }
+        
+        /* 선택자 id 사용 : #(샵) */
+        #yellow {background-color: purple; }
+        #orange {background-color: orange; }
+        
+        /* 선택자 우선순위 : id, class, 태그(tag) 순으로 적용됨*/
+        p {
+            background-color: gray;
+            border: 2px solid black;
+        }
+        div {
+            border: 2px dotted red;
+        }
+        div > p { background-color: pink;}
+        
+        p.green { background-color: aqua; }
+        
+        /* p태그 + 클래스명 aqua 적용된 선택자는
+        클래스명 green 선택자보다 가중치가 높다.*/
+    </style>
+</head>
+<body>
+<!--
+    CSS 문법 : 선택자 { 속성명 : 속성값; [속성명 : 속성값;] }
+    작성위치
+        1. HTML 태그안(속성형태, 인라인 방식)
+            style="속성명 : 속성값; [속성명 : 속성값;]"
+        2. <head> 태그 내부의 <style> 태그 내에 작성
+            <style>
+                선택자 { 속성명 : 속성값; [속성명 : 속성값;] }
+            </style>
+        3. 외부 스타일파일 링크 연결 방식(head 태그 안에 선언)
+            <link rel="stylesheet" type="text/css" href="mystyle.css">
+-->    
+    <h1>CSS 바탕색 지정 : background-color</h1>
+    <h2 id="orange">H2태그 : 속성 class="orange"</h2>
+    <h2 class="red">H2태그 : 속성 class="red"</h2>
+    <h2 class="green">H2태그 : 속성 class="green"</h2>
+    
+    <h3>배경색 노랗게</h3>
+    <div class="yellow">배경색 노란색(div class="yellow")</div>
+    <hr>
+    
+    <p>일반 p태그(id, class 속성 없는)</p>
+    <p id="yellow">p태그-id 속성을 가진 p태그</p>
+    <p class="yellow">p태그 - class 속성을 가진</p>
+    <hr>
+    
+    <p>일반 p태그(id, class 속성없는)</p>
+    <div>
+        <p>div 안에 있는 p태그</p>
+        <p class="green">div안에 있는 p태그(class="green")</p>
+    </div>
+</body>
+</html>
