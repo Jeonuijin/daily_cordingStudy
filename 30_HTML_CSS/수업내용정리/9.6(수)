@@ -1,0 +1,36 @@
+9/6(수)
+
+*CSS
+-문법
+선택자	 속성명 : 속성값;
+h1 {color:blue;}
+
+* 선택자의 세가지 형태
+# : id	 ex)#para1 {속성명 : 속성값;} 이런식으로 작성
+. : class ex).center{} / p.center : p태그 중 center 클래스
+태그명 : 적용할 해당 태그 ex)  h1 {background-color: aqua; }
+- 가중치가 높은순
+id(#) > class(.) > 태그명
+-->p.center 와 같이 p태그 중 클래스를 쓴다면 그냥 클래스보다 가중치가 더 높다.
+- 선택자 나열 : , 콤마사용
+ 
+*CSS의 세가지 형태
+-external : <link rel="stylesheet" href="mystyle.css">
+-internal : h1 {color: maroon;}
+-inline : <p style="color:red;">This is a paragraph.</p>
+
+*cascading
+똑같은 선택자, 속성으로 재정의 되어지면 마지막에 작성된 속성이 적용된다.
+
+-적용되는 순서
+1. Inline style(inside an HTML element)
+2. Externaml and Internal style sheets (In the head section)
+3. 디폴트 속성
+
+*inherit
+ : 부모 태그의 해당 속성의 값을 그대로 상속을 받는다.
+ 
+* box-sizing: border-box
+ : 디폴트값인 content-box는 높이와 너비의 값에 border값이나 padding값을
+   추가하면 그 크기가 달라지기 때문에 정확한 박스 사이즈를 주려면 border와 padding을
+   포함하는 border-box를 사이즈값으로 주는것이 좋다.
