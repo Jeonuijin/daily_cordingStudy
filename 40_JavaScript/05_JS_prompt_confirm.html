@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JS : alert, prompt, confirm</title>
+    
+<script>
+    // alert, prompt, confirm : window 객체에 있는 함수(메소드)
+    // alert : 브라우저 창에 메시지 표시
+    window.alert("자바스크립트 진행중!!!");
+    alert("window.alert 에서 window 생략가능");
+    
+    // prompt : 메시지 창으로 부터 값을 입력 받을 때 사용
+    // 확인 : 입력값 사용 - 입력된 값이 리턴
+    // 취소 : 입력값 사용 안함 - null 리턴
+    let input = prompt("[prompt] 이름을 입력하세요", "무명");
+    alert("입력된 값 : -" + input + "-");  //입력된 값 메시지창으로 확인
+    
+    // prompt 통해서 입력되는 값은 모두 문자열(string) 타입이다.
+    let num = prompt("[prompt] 숫자를 입력하세요(반드시 입력하세요)", "100");
+    alert("num : " + num);
+    num = num + 111; // "100" + 111 문자열 붙이기 연산처리
+      //숫자를 입력해도 리턴받는 값은 String타입이기 때문에
+                                     //결과는 100111 과 같은 문자열이 된다.
+     
+    // 문자열 -> 숫자 형변환 후 덧셈 연산처리
+    num = prompt("[prompt] 숫자를 입력하세요'\n'(반드시 입력하세요)", "100");
+//    num = window.Number(num) + 111; // 100 + 111
+//    alert("window.Number(num) + 111 결과 : " + num);
+    
+    // 명시적 형변환 처리
+    //num =  window.Number(num) + 111; // 100 + 111
+    //num =  Number(num) + 111; // 100 + 111
+    //alert("window.Number(num) + 111 결과 : " + num);
+    
+    //num = window.parseInt(num) + 111; // 100 + 111
+    num = parseInt(num) + 111; // 100 + 111
+    alert("window.parseInt(num) + 111 결과 : " + num);
+    
+    //======================================================
+    // confirm : 메시지 창을 띄우고, 사용자 의견 묻기(확인)
+    let answer = confirm("[confirm] 데이터를 삭제 할까요?");
+    console.log("답변결과 : " + answer);
+    if (answer) {
+    alert(">>> 데이터 삭제 처리합니다~~");
+    } else {
+        alert(">>> 데이터 삭제작업을 취소합니다.");
+    }
+</script>
+</head>
+<body>
+</body>
+</html>

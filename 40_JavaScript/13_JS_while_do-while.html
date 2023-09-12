@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<script>
+    //while (조건식) { }
+    //do { } while(조건식);
+    //----------------------
+    //while문으로 1~10까지의 합 구하기
+    let sum = 0;
+    let num = 1;
+    while (num <= 10) {
+        sum += num;
+        document.write("num: " + num+ ", sum : " + sum, "<br>");
+        num++;
+    }
+    document.write("1~10까지의 합 : " + sum);
+    document.write("<hr>");
+    
+    //--------------------------
+    //위의 while문과 동일한 결과를 만드는 while문 작성(1~10까지의 합 구하기)
+    sum = 0;
+    num = 0;
+    while (num < 10) {
+        num++;
+        sum += num;
+        document.write("num: " + num+ ", sum : " + sum, "<br>");
+        
+    }
+    document.write("1~10까지의 합 : " + sum);
+    document.write("<hr>");
+    
+    //====================================
+    document.write("<h3>do ~ while문</h3>");
+    //(실습) do while 문으로 1~10까지의 합 구하기
+    sum = 0;
+    num = 1;
+    do {
+        sum += num;
+        document.write("num: " + num+ ", sum : " + sum, "<br>");
+        num++;
+    } while(num <= 10);
+    document.write("1~10까지의 합 : " + sum);
+    document.write("<hr>");
+    
+    //========================
+    // continue, break
+    document.write("<h3>continue, break 적용</h3>");
+    outFor : for (let outer = 1; outer <= 5; outer++) {
+        document.write("outer : " + outer + "------", "<br>");
+        
+        if (outer == 3) continue; //다음 반복 진행
+        
+        for (let inner = 1; inner <= 5; inner++) {
+            if (outer == 3  && inner == 3) break; //현재 진행중인 반복문 종료
+            if (outer == 4 && inner == 3) break outFor; //outFor 반복문 종료
+            document.write("outer : " + outer + ", inner: " + inner, "<br>");
+        }
+    }
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JS: Object</title>
+<script>
+    // object : 객체 사용법
+    // 객체 선언 및 사용
+    //------------------------------
+    let tv = new Object();
+    document.write("typeof tv : " + typeof tv, "<br>");
+    document.write(tv, "<br>");
+    
+    tv.width = 1500; //tv 객체에 width 속성 추가되고 값 설정
+    tv.height = 700;
+    tv.color = "black";
+    tv.on = function(){
+        console.log("TV전원 ON");
+        document.write("<p>TV전원 ON</p>");
+    };
+    tv.off = function() {
+        console.log("TV전원 OFF");
+        document.write("<p>TV전원 OFF</p>");
+    }
+    console.log(tv);
+    
+    //tv 객체 속성값 확인
+    document.write("tv.width : " + tv.width, "<br>");
+    document.write("tv.height : " + tv.height, "<br>");
+    document.write("tv.color : " + tv.color, "<br>");
+    
+    //tv 객체 기능 확인(사용)
+    tv.on();
+    tv.off();
+    document.write("<hr>");
+    
+    //------------------
+    // 속성의 유무 확인 : 속성명 in 객체
+    document.write("tv에 color 속성 유무확인 : " + ("color" in tv), "<br>"); 
+    document.write("tv에 weight 속성 유무확인 : " + ("weight" in tv), "<br>");
+    
+    // 속성 삭제 : delete 객체.속성명
+    delete tv.color;
+    document.write("삭제 후 color 속성 유무 : " + ("color" in tv), "<br>");
+    
+    // 속성 추가 또는 값 변경
+    tv.color = "gray"; //없을때 추가
+    document.write("tv.color : " + tv.color, "<br>");
+    
+    tv.color = "yellow"; //있을때 수정
+    document.write("tv.color : " + tv.color, "<br>");
+    document.write("<hr><hr>");
+    
+    //===================
+    // 객체의 속성값 사용 방식2 : 객체["속성명"] - 속성명으로 변수값 사용 가능
+    document.write('<h3> 객체의 속성값 사용 방식2 : 객체["속성명"]</h3>');
+    document.write('tv["width"] : ' + tv["width"], "<br>");
+    document.write('tv["height"] : ' + tv["height"], "<br>");
+    let prop = "color";
+    document.write('prop: ' + prop + " - tv[prop] : " + tv[prop], "<br>");  
+    // 변수값을 집어넣어서 결국엔 prop의 변수값인 color가 집어넣어짐으로 tv의 color속성값이 출력된다. 하지만 tv.prop(변수명) 이런식으로는 변수명을 사용하지 못한다.
+    
+    //------------------
+    //객체의 속성 확인(for ~ in)
+    document.write("<h3>tv객체 속성확인(for ~ in)")
+    for (let attr in tv) {
+        document.write("tv 속성확인 - " + attr + " : " + tv[attr], "<br>");
+    }
+</script>
+</head>
+<body>
+</body>
+</html>

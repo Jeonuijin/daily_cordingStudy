@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JS: 반복문 for</title>
+<script>
+    // 반복문 : for, while, do while
+    // for (초기치; 조건식; 증감식) { }
+    //-----------------------------------
+    for (var i = 1; i <= 6; i++) {
+        document.write(i, "<br>");
+    }  
+    document.write("---- 반복문 끝 ----<br>")
+    document.write("i : " + i, "<br>");  //let은 중괄호 안에서만 사용가능하기 때문에 오류, var은 가능
+    //====================================
+    
+    //구구단 브라우저 화면에 출력
+    for (let idx = 2; idx <= 9; idx++){
+        document.write("-------", "<br>")
+        document.write("<"+idx+"단>", "<br>")
+        for (let i = 1; i <= 9; i++) {
+            document.write(idx+" * " + i + "= " + idx*i, "<br>");
+        }
+    }
+    
+    document.write("<hr>")
+    var input = prompt("단 값을 입력하세요");
+    document.write("<"+input+ "단>", "<br>")
+    
+    for (let i = 1; i <= 9; i++) {
+        document.write(input+" * " + i + "= " + input*i, "<br>");  
+    }
+</script>
+</head>
+<body>
+</body>
+</html>
