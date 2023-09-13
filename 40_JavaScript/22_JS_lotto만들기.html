@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JS 로또만들기</title>
+<style>
+    /* 공(ball) 공통 적용 스타일 */
+    .ball {
+/*        border: 0.1px solid gray;*/
+        width: 100px; height: 100px;
+        display: inline-block;
+        border-radius: 70%;
+        box-shadow: 10px 30px 30px #222222;
+        
+        
+        /* 글자 크기 조정, 중앙정렬 */
+        font-size: 3em;
+        text-align: center;
+        line-height: 100px;
+    }
+ 
+    .ball0 { background: radial-gradient(white,red,darkred, black); }
+    .ball1 { background: radial-gradient(white,magenta,purple,black); }
+    .ball2 { background: radial-gradient(white,orange,rgb(220, 98, 0),black); }
+    .ball3 { background: radial-gradient(white,green,darkgreen, black); }
+    .ball4 {background: radial-gradient(white,blue,darkblue,black); }
+    .ball5 {background: radial-gradient(white,purple,rgb(57, 0, 71), black); }
+</style>
+<script>
+    /*(실습)로또번호 만들기
+    1. 로또번호 저장할 배열을 만들고
+    2. 1~45 숫자중 선택해서 6개를 숫자를 배열에 저장(중복값 없이)
+       2-1. 1~45 숫자 중 랜덤하게 숫자를 만들고(Math.random())
+       2-2. 중복된 값이 있으면 다시 번호를 선택(생성)해서 배열에 6개 번호를 저장
+    3. 배열 데이터를 화면에 출력
+       HTML div 태그에 ball, ball+숫자 클래스명 적용(사용)
+    ******************/
+    document.write("<h3>JavaScript 사용 로또번호 만들기</h3>");
+    //1. 로또번호 저장할 배열을 만들고
+    let lotto = new Array();
+    console.log("lotto.length : " + lotto.length);
+    
+    //2. 1~45 숫자중 선택해서 6개를 숫자를 배열에 저장(중복값 없이)
+    //   2-1. 1~45 숫자 중 랜덤하게 숫자를 만들고(Math.random())
+    //   2-2. 중복된 값이 있으면 다시 번호를 선택(생성)해서 배열에 6개 번호를 저장
+//    for (let i = 0; i < 6; i++) {
+//        let lottoNum = Math.trunc(Math.random() * 45) + 1;
+//        lotto[lotto.length] = lottoNum;
+//    }
+//    console.log("lotto.length : " + lotto.length);
+//    console.log(lotto);
+    
+    while (lotto.length < 6) {
+        let lottoNum = Math.trunc(Math.random() * 45 + 1);
+    
+        //중복값 여부 확인 후 중복이면 입력하지 않고 다시 작업 //내가만든 함수 사용하는방법
+        //if (isDuplicate(lottoNum)) continue; //중복값이면 다시 섞어라
+        //    lotto[lotto.length] = num; //중복이 아니면 집어넣어라
+        
+        if(!lotto.includes(lottoNum)) { //배열에 있는 기능사용하는 방법
+            lotto[lotto.length] = lottoNum;
+        }
+    }
+
+    document.write(lotto, "<br>");
+    
+    //로또번호 오름차순 정렬하기  //sort 메서드는 정렬 기준을 정의할 수 있는 콜백 함수를 인자로 받습니다. 여기서 a와 b는 비교되는 두 요소를 나타냅니다.
+    lotto.sort(function(a, b){
+        return a - b;   //b - a 는 내림차순
+    });
+    
+    
+    //3. 배열 데이터를 화면에 출력
+    //   HTML div 태그에 ball, ball+숫자 클래스명 적용(사용)
+    for (let i = 0; i < lotto.length; i++) {
+        document.write('<div class="ball ball' + i + '">' + lotto[i] + '</div>');
+    }
+
+    document.write("<hr><hr>");
+    
+    function isDuplicate(value) {   //중복값을 잡아서 리턴하는 함수
+        let result = false;
+        console.log("function lottoNum : " + value);
+        
+        for (let lottoValue of lotto) {
+            if (lottoValue == value) {
+                result = true;
+                break;
+            }
+        }
+        
+        return result;
+    }
+    
+</script>
+</head>
+<body>
+    <h2>로또만들기</h2>
+    <p>1~45 까지의 숫자 중 6개를 추출해서 로또 만들기</p>
+    <hr>
+    <h2>로또번호</h2>
+    <div class="ball ball0">5</div>
+    <div class="ball ball1">4</div>
+    <div class="ball ball2">30</div>
+    <div class="ball ball3">44</div>
+    <div class="ball ball4">23</div>
+    <div class="ball ball5">17</div>
+</body>
+</html>
