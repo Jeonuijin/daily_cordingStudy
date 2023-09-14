@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Array 메소드</title>
+<script>
+    // 배열(Array) 메소드(기능, function)
+    let arr = ["사당", "교대", "방배", "강남"];
+    document.write("arr : " + arr, "<br>");
+    document.write("arr : " + arr.toString(), "<br>");
+    document.write("arr.length : " + arr.length, "<br>");
+    document.write("<hr>");
+    
+    //includes() : 배열에 데이터 존재여부 확인
+    document.write("arr.includes('사당') : " + arr.includes('사당'), "<br>");
+    document.write("arr.includes('신도림') : " + arr.includes('신도림'), "<br>");
+    document.write("<hr>");
+    
+    // reverse() : 배열 데이터 앞 <-> 뒤 위치 바꿈
+    document.write("arr : " + arr, "<br>");
+    let result = arr.reverse();
+    document.write("arr.reverse() 실행후 arr : " + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>");
+    document.write("<hr>");
+    
+    //sort() : 배열에 있는 데이터 오름차순 정렬(문자열 비교 처리)
+    document.write("arr : " + arr, "<br>");
+    result = arr.sort();
+    document.write("arr.sort()() 실행후 arr : " + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>");
+    document.write("<hr>");
+    
+    //slice(idx1, idx2) : idx1 부터 idx2 이전까지 자르기
+    //원본데이터 : 변경없음
+    //리턴값을 사용
+    document.write("arr : " + arr, "<br>");
+    result = arr.slice(1, 3);
+    document.write("arr.slice(1, 3) 실행 후 arr : " + arr, "<br>"); //잘라냈을 때 원본데이터는 그대로 유지된다.
+    document.write("리턴 값 : " + result, "<br>");
+    document.write("<hr>");
+    
+    // splice(idx, n개 [, 데이터...]) : idx시작해서 n개 삭제[데이터 삽입]
+    document.write("arr : " + arr, "<br>");
+    result = arr.splice(1, 2, "잠실", "시청", "신도림");
+    document.write("arr.splice(1, 2, '잠실', '시청', '신도림') 실행 후 arr : " + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>");
+    document.write("<hr>");
+    
+    // concat(추가할데이터) : 데이터 붙이기
+    // 원본데이터 : 변경없음
+    // 리턴값 : 연결된(합해진) 데이터
+    document.write("arr : " + arr, "<br>");
+    let arr2 = ["종로1가", "종로2가", "종로3가"];
+    document.write("arr : " + arr2, "<br>");
+    
+    result = arr.concat(arr2);
+    document.write("arr.concat(arr2) 실행 후 arr : " + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>");
+    document.write("<hr>");
+    
+    //=====================================
+    // pop : 맨뒤에서 데이터 꺼내기(참조후 삭제)
+    // push : 맨 뒤에 데이터 추가하기
+    // shift : 맨 앞의 데이터 꺼내기(참조 후 삭제)
+    // unshift : 맨 앞에 데이터 추가하기
+    //--------------------
+    // pop() : 배열의 마지막 인덱스 값 추출 후 삭제(마지막 데이터 꺼내기)
+    document.write("arr : " + arr, "<br>");
+    result = arr.pop();
+    document.write("arr.pop() 실행 후 arr : " + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>");
+    document.write("<hr>");
+    
+    // push() : 배열의 마지막에 데이터 추가
+    result = arr.push("push1", "push2");
+    document.write('arr.push("push1", "push2") 실행 후 arr : ' + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>");  //추가한 후의 배열의 길이를 리턴해준다.
+    document.write("<hr>");
+    
+    //---------------------------
+    // shift : 맨 앞의 데이터 꺼내기(참조 후 삭제)
+    // unshift : 맨 앞에 데이터 추가하기
+    //-----------------
+    // shift() : 배열의 첫번째 데이터 추출 후 삭제(꺼내기)
+    // 원본데이터 : 변경됨 / 리턴ㄴ값 : 첫번째(0인덱스) 데이터
+    document.write("arr : " + arr, "<br>");
+    result = arr.shift();
+    document.write("arr.shift() 실행 후 arr : " + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>");
+    document.write("<hr>");
+    
+    //unshift(데이터) : 배열의 맬 앞에 데이터 추가(삽입)  //데이터를 한번에 넣는것과 따로 넣는 결과값이 달라진다.
+    document.write("arr : " + arr, "<br>");
+    result = arr.unshift("unshift1", "unshift2");
+    document.write('arr.unshift("unshift1", "unshift2") 실행 후 arr : ' + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>"); //추가한 후의 배열의 길이를 리턴해준다.
+    document.write("<hr>");
+    
+    //----------------------------
+    document.write("arr : " + arr, "<br>");
+    result = arr.unshift("unshift3");
+    document.write('arr.unshift("unshift3") 실행 후 arr : ' + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>"); //추가한 후의 배열의 길이를 리턴해준다.
+    document.write("<hr>");
+    
+    document.write("arr : " + arr, "<br>");
+    result = arr.unshift("unshift4");
+    document.write('arr.unshift("unshift4") 실행 후 arr : ' + arr, "<br>");
+    document.write("리턴 값 : " + result, "<br>"); //추가한 후의 배열의 길이를 리턴해준다.
+    document.write("<hr>");
+    
+</script>
+</head>
+<body>
+</body>
+</html>
