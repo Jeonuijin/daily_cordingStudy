@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>마우스 이벤트</title>
+<script>
+    /* 마우스 이벤트
+    onmouseover : 마우스가 해당영역 위에 있으면 발생(들어오면)
+    onmouseout : 마우스가 해당역역에서 벗어나면 발생(나가면)
+    *****************/
+    window.onload = function() {
+        let imgbtn = document.getElementById("imgbtn");
+        alert(imgbtn);
+        console.log(imgbtn);
+        
+        /*
+        //on으로 시작하면 모두 이벤트속성
+        imgbtn.onmouseover = function() {
+            console.log(">> imgbtn.onmouseover 실행(mouseover이벤트)~~")
+            imgbtn.firstElementChild.src = "images/btn2_yellow.png";
+        };
+        imgbtn.onmouseout = function() {
+            console.log(">> imgbtn.onmouseout(mouseout이벤트) 실행---")
+            imgbtn.firstElementChild.src = "images/btn2_gray.png";
+            
+        };
+        */
+        
+        // mouseenter, mouseleave : 동작확인
+        imgbtn.addEventListener("mouseenter", function() {
+            console.log(">> mouseenter 이벤트 발생");
+            imgbtn.firstElementChild.src = "images/btn2_yellow.png";
+            
+        });
+        
+        imgbtn.addEventListener("mouseleave", function() {
+            console.log(">> mouseleave 이벤트 발생");
+            imgbtn.firstElementChild.src = "images/btn2_gray.png";
+        });
+        
+        //::차이점
+        //mouseover은 이벤트 자녀태그 영역을 갔다올때에도 이벤트가 발생하여 총 이벤트가 두번발생하고 
+        //mouseleave는 자녀태그 상관없이 영역에 들어가면 이벤트가 한번만 발생한다.
+    }
+</script>
+<style>
+    #btn1, #btn2 {background-color: lightgray; }
+    #btn2:hover {background-color: lightyellow; }
+    a { border: 1px solid pink; background-color:antiquewhite;  width: 100px; height: 100px; display: block; }
+</style>
+</head>
+<body>
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼3</button>
+    <hr>
+    <a href="#" id="imgbtn">
+        <img src="images/btn2_gray.png" alt="버튼">
+    </a>
+</body>
+</html>
