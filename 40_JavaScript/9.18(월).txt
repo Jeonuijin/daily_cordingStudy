@@ -1,0 +1,59 @@
+9/18 (월)
+
+*DOM선택자 id, class, tag
+-DOM 객체 선택시 사용할 메소드
+document.getElementById("id명") : id 속성 요소 1개 리턴
+etElementsClassName("클래스명") : class 요소 찾기(배열 형태 리턴)
+getElementsTagName("태그명") : 태그명으로 찾기(배열형태 리턴)
+------------------------
+docuent.querySelector("CSS선택자") : 선택자에 의해 선택된 첫번째 요소 1개 리턴
+docuent.querySelectorAll("CSS선택자") : 선택자에 의해 선택된 모든 요소(배열형태)
+
+DOM 객체는 사용할 id명이나 클래스명, 태그명이 선언된 다음에 와야 사용가능하다.
+그 전에 사용하기 위해서는 브라우저 문서가 모두 로딩이 완료되면 발생하는 이벤트 onload에 콜백함수를
+작성하여 사용한다.
+ex)window.onload = function(){ //DOM 객체 사용 가능
+        console.log(">>> window.onload 이벤트 발생~~~");
+        title = document.getElementById("title");
+        console.log("onload title : " + title);
+        
+        //document.getElementById("title").style.color = "red";
+        //document.getElementById("title").style.backgroundColor = "yellow";
+        title.style.color = "blue";			//이미 title변수에 DOM이 선언되었다면 document를일일이 다 쓰지 않아도 된다.
+        title.style.backgroundColor = "yellow";  //동일속성에 대해서 맨 마지막 속성이 적용된다.
+    };	// css에서는 background-color로 표시
+
+*DOM 인접관계 선택자
+	/* 인접관계 선택자
+    parentNode : 부모노드 선택
+    childNodes : 모든 자식 노드들 선택(배열형태)
+    children : 자식 노드들(배열)
+    firstChild : 첫번째 자식노드(node)
+    previousSibling : 이전 형제 노드(태그, 태그 이외의 노드 포함)
+    nextSibling : 다음 형제 노드(태그, 태그 이외의 노드 포함)
+    
+    //Element가 들어가면 태그만 해당
+    firstElementChild : 첫번째 자녀노드(태그만)
+    previousElementSibling : 이전 형제 노드(태그만)
+    nextElementSibling : 다음 형제 노드(태그만)
+    *************************/
+*이벤트
+ -마우스 이벤트
+ : onmouseover : 마우스가 해당영역 위에 있으면 발생(들어오면)
+   onmouseout : 마우스가 해당역역에서 벗어나면 발생(나가면)
+	
+	 window.onload = function() {		//Id값인 imgbtn을 위에서 가져다 쓰기 위해
+        let imgbtn = document.getElementById("imgbtn");
+        alert(imgbtn);
+        console.log(imgbtn);
+        
+        //on으로 시작하면 모두 이벤트속성
+        imgbtn.onmouseover = function() {	//마우스 over일때
+            console.log(">> imgbtn.onmouseover 실행~~")
+            imgbtn.firstElementChild.src = "images/btn2_yellow.png";
+        };
+        imgbtn.onmouseout = function() {	//마우스out일 때
+            console.log(">> imgbtn.onmouseout 실행---")
+            imgbtn.firstElementChild.src = "images/btn2_gray.png";
+        };
+    }
