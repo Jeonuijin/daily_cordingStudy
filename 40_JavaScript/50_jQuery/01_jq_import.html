@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery import</title>
+    <!-- jQuery import 방식1 -->
+    <!--<script src="js/jquery-3.7.1.min.js"></script>
+    <!-- jQuery import 방식2 CDN방식 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    console.log("head JavaScript 시작~~~");
+    
+    //JavaScript DOM 객체 다루기
+    window.onload = function(){
+        console.log("window.onload 이벤트-----------"); 
+        document.getElementById("id1").style.color = "blue";
+    };
+    
+    //제이쿼리(jQuery) 사용방식 3가지
+    //방식1 : jQuery(document).ready(function(){});  //=>function(){} : 콜백함수
+    //       $(document).ready(function(){});   
+    //jQuery(document).ready(function(){
+    //    console.log("jQuery document ready ~~~");
+    //    jQuery("#id1").css("background-color", "yellow");      //jQuery객체로 만들어서 리턴.(jQuery 속성사용가가능), css에서 주던 속성값을 그대로 쓴다
+    //});
+    $(document).ready(function(){
+       $("#id1").css("border", "3px solid red"); 
+    });
+    //----------------------------
+    //방식2 : $().ready(function()});
+    $().ready(function(){       //document생략가능
+        $("#id1").css("background-color", "orange");
+    });
+    //----------------------------
+    //방식3 : $(function()});
+    $(function(){               //document,ready생략가능
+        $("#id1").css("background-color", "green");
+    });
+</script>
+</head>
+<body>
+    <h1 id="id1">제이쿼리(jQuery)</h1>
+    
+    
+<script>
+    console.log("body끝 JavaScript ~~~");
+    //document.querySelector("#id1").style.backgroundColor = "aqua";
+    $("#id1").css("background-color", "aqua");
+</script>
+    
+</body>
+</html>

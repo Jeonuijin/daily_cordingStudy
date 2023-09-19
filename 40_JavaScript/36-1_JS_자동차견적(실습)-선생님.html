@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>자동차견적</title>
+<style>
+    #carZone {
+        border: 1px solid blue;
+        width: 600px;
+        margin: auto;
+    }
+    h1 { text-align: center; }
+    #car {
+        width: 100%;
+        border-collapse: collapse; 
+    }
+    #car th, #car td {
+        border: 1px solid black;
+        text-align: center;
+    }
+    #car thead { background-color: gray; }
+    #totalTxt { background-color: gray; }
+    #total {
+        border: none;
+        text-align: center;
+        font-size: 1.5em;
+    }
+</style>
+<script>
+    // 옵션 금액에 따라 차량금액 변경처리
+    // 기본차량가액에서 시작해서 옵션금액 변경시 마다 더하기, 빼기 처리
+    // 체크상태 : 옵션금액 더하기
+    // 체크해제 : 옵션금액 빼기
+    //-----------------------
+    // 개별 데이터 처리방식
+    //---------------------
+    let totalValue = 0; //기본차량가액 + 옵션금액
+    let totalTag; // 차량금액 표시할 객체
+    
+    window.onload = function(){
+        console.log(">> window.onload 이벤트 처리중~~");
+        totalTag = document.getElementById("total");
+        totalValue = parseInt(totalTag.value);
+        console.log("totalValue : " + totalValue);
+        
+        //옵션처리를 위한 이벤트 연결
+/*        
+        document.getElementById("opt1").onclick = function(){
+            if (this.checked) { //옵션금액 더하기
+                totalValue += parseInt(this.value);
+            } else { //옵션금액 빼기
+                totalValue -= parseInt(this.value);
+            }
+            console.log("totalValue : " + totalValue);
+            //화면에 표시
+            totalTag.value = totalValue;
+        };
+        document.getElementById("opt2").onclick = function(){
+            if (this.checked) { //옵션금액 더하기
+                totalValue += parseInt(this.value);
+            } else { //옵션금액 빼기
+                totalValue -= parseInt(this.value);
+            }
+            console.log("totalValue : " + totalValue);
+            //화면에 표시
+            totalTag.value = totalValue;
+        };       
+        document.getElementById("opt3").onclick = computeOpt;  
+*/       
+        //document.getElementById("opt1").onclick = computeOpt;
+        //document.getElementById("opt2").onclick = computeOpt;
+        //document.getElementById("opt3").onclick = computeOpt;
+        
+        let opts = document.getElementsByClassName("opt");
+        for (let opt of opts) {
+            //opt.onclick = computeOpt; //click 이벤트 연결 처리
+            opt.onchange = computeOpt; //change 이벤트 연결 처리
+        }
+    };
+        
+    function computeOpt(){
+        if (this.checked) { //옵션금액 더하기
+            totalValue += parseInt(this.value);
+        } else { //옵션금액 빼기
+            totalValue -= parseInt(this.value);
+        }
+        console.log("totalValue : " + totalValue);
+        //화면에 표시
+        totalTag.value = totalValue;
+    };    
+</script>
+</head>
+<body>
+
+<div id="carZone">
+    <h1>자동차 견적</h1>
+    <p>
+        <img src="images/car1.jpg" alt="자동차이미지">
+    </p>
+    <table id="car">
+        <colgroup>
+            <col width="50%">
+            <col width="30%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>옵션</th>
+                <th>추가가격</th>
+                <th>옵션선택</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>인조가죽시트</td>
+                <td>300000</td>
+                <td>
+                    <input type="checkbox" value="300000" id="opt1" class="opt">
+                </td>
+            </tr>
+            <tr>
+                <td>네비게이션</td>
+                <td>400000</td>
+                <td>
+                    <input type="checkbox" value="400000" id="opt2" class="opt">
+                </td>
+            </tr>
+            <tr>
+                <td>썬루프</td>
+                <td>500000</td>
+                <td>
+                    <input type="checkbox" value="500000" id="opt3" class="opt">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td id="totalTxt">차량금액(옵션포함)</td>
+                <td colspan="2">
+                    <input type="text" value="20000000" id="total" readonly>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+    
+    
+    
+</body>
+</html>

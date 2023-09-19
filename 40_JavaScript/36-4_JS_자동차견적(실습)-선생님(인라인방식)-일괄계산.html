@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>자동차견적</title>
+<style>
+    #carZone {
+        /* border: 1px solid blue; */
+        width: 600px;
+        margin: auto;
+    }
+    h1 { text-align: center; }
+    #car {
+        width: 100%;
+        border-collapse: collapse; 
+    }
+    #car th, #car td {
+        border: 1px solid black;
+        text-align: center;
+    }
+    #car thead { background-color: gray; }
+    #totalTxt { background-color: gray; }
+    #total {
+        border: none;
+        text-align: center;
+        font-size: 1.5em;
+    }
+</style>
+<script>
+    // 기본차량가액 + 체크된 모든 옵션금액(일괄 옵션 처리방식)
+    // 옵션 체크박스에 이벤트 발생시 모든 옵션 확인해서 체크된 금액 모두 합산 처리
+    
+    let totalTag; // 합계금액 표시할 input 객체
+    let initValue = 0; //차량 기본 금액(최초 설정 금액);
+    
+    window.onload = function(){
+        totalTag = document.getElementById("total");
+        initValue = parseInt(totalTag.value); //차량기초 가액
+        console.log("initValue : " + initValue);
+        
+        //옵션태그에 이벤트 연결
+        //document.getElementById("opt1").onclick = fnComputeTotal;
+        //document.getElementById("opt2").onclick = fnComputeTotal;
+        //document.getElementById("opt3").onclick = fnComputeTotal;
+        
+        let options = document.querySelectorAll(".opt");
+        for (let opt of options) {
+            opt.addEventListener("click", fnComputeTotal)
+        }
+    };
+    
+    function fnComputeTotal(){
+        console.log("this.id : " + this.id);
+
+        let opts = document.getElementsByClassName("opt");
+        console.log(opts);
+        
+        let totalValue = initValue;
+        console.log("totalValue : " + totalValue);
+        
+        //모든 옵션을 확인해서 체크된 금액을 차량기초가액에 합산하기
+        for (let option of opts) {
+            console.log("option.id : " + option.id);
+            console.log("option.checked : " + option.checked);
+            if (option.checked) {
+                totalValue += Number(option.value);
+            }
+        }
+        console.log("totalValue : " + totalValue);
+
+        //화면에 표시
+        totalTag.value = totalValue;
+        
+        //기본 설정값 
+        console.log("totalTag.defaultValue : " + totalTag.defaultValue);
+    };
+</script>
+</head>
+<body>
+
+<div id="carZone">
+    <h1>자동차 견적</h1>
+    <p>
+        <img src="car1.jpg" alt="자동차이미지">
+    </p>
+    <table id="car">
+        <colgroup>
+            <col width="50%">
+            <col width="30%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>옵션</th>
+                <th>추가가격</th>
+                <th>옵션선택</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>인조가죽시트</td>
+                <td>300000</td>
+                <td>
+                    <input type="checkbox" value="300000" id="opt1" class="opt">
+                </td>
+            </tr>
+            <tr>
+                <td>네비게이션</td>
+                <td>400000</td>
+                <td>
+                    <input type="checkbox" value="400000" id="opt2" class="opt">
+                </td>
+            </tr>
+            <tr>
+                <td>썬루프</td>
+                <td>500000</td>
+                <td>
+                    <input type="checkbox" value="500000" id="opt3" class="opt">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td id="totalTxt">차량금액(옵션포함)</td>
+                <td colspan="2">
+                    <input type="text" value="20000000" id="total" readonly>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+    
+    
+    
+</body>
+</html>

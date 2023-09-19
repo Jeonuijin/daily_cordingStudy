@@ -1,0 +1,21 @@
+9/19(화)
+
+자동차견적실습
+
+*jquery
+
+다운로드 : jquery.com
+
+-jQuery import 방식1
+<script src="js/jquery-3.7.1.min.js"></script>
+
+-jQuery import 방식2 CDN방식
+https://releases.jquery.com ->jQuery Core 3.7.1 - minified 복사
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+&amp; : &와 같은 특수문자는 태그에 영향을 줄 수 있으므로 다음과 같이 입력한다.
+
+em : 부모요소기준 1.5 rem : 브라우저 사이즈 기준
+
+04_jq_선택자_eq_contains_find --> 모르는 부분 찾아보기
+ //여기에다 .siblings()했을땐 왜 부모요소 빼고 적용되는지???????

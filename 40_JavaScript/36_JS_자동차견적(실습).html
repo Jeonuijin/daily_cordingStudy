@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<script>
+    // 옵션 금액에 따라 차량금액 변경처리
+    // 기본차량가액에서 시작해서 옵션금액 변경시마다 더하기, 빼기 처리
+    // 체크상태 : 옵션금액 더하기
+    // 체크 해제 : 옵션금액 빼기
+    window.onload = function(){
+    
+    let total = document.getElementById("total");    
+    let opt1 = document.getElementById("opt1");
+    let opt2 = document.getElementById("opt2");
+    let opt3 = document.getElementById("opt3");
+    
+    //옵션처리를 위한 이벤트 연결
+    opt1.onclick = function() {
+        if (this.checked) { // 옵션금액 더하기
+           total.value = parseInt(total.value) + parseInt(opt1.value);
+        } else {
+            total.value = parseInt(total.value) - parseInt(opt1.value) ;
+        }
+        
+    }; 
+    /*
+    위에서 parseInt(total.value) += parseInt(opt1.value); 가 안되는이유
+    주어진 코드에서 parseInt(total.value) += parseInt(opt1.value);와 같은 표현을 사용할 수 없는 이유는 JavaScript에서 += 연산자를 사용할 때 왼쪽 피연산자의 값이 변경될 수 있는 경우에만 허용되기 때문입니다. parseInt(total.value)는 total.value의 정수 값으로 변환된 결과를 반환하는 것이므로, 이를 직접 수정하는 것은 권장되지 않습니다.
+
+    대신, 코드에서처럼 값을 수정하려면 재할당을 사용해야 합니다. 따라서 total.value 값을 업데이트할 때는 현재 값에 새로운 값을 더하거나 빼서 새로운 값을 할당해야 합니다. 여기에서 사용한 코드처럼 +=와 -= 연산자를 사용하는 대신 직접 값을 할당하는 것이 바람직합니다.
+    
+    */
+        
+    opt2.onclick = function() {
+
+        if (this.checked) {
+           total.value = parseInt(total.value) + parseInt(opt2.value);
+        } else {
+            total.value = parseInt(total.value) - parseInt(opt2.value) ;
+        }
+        
+    };
+    
+   opt3.onclick = function() {
+
+        if (this.checked) {
+           total.value = parseInt(total.value) + parseInt(opt3.value);
+        } else {
+            total.value = parseInt(total.value) - parseInt(opt3.value) ;
+        }
+        
+    };    
+    
+        
+        
+   
+    
+    }
+</script>
+<style>
+    table { border: 2px solid black;
+            border-collapse: collapse;
+            text-align: center;}
+    th { background-color: lightblue; color: black; }
+    #totalTxt { background-color: cadetblue; color: black; }
+</style>
+</head>
+<body>
+    
+<div id="carZone">
+    <h1>자동차 견적</h1>
+    <p>
+        <img src="%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.jpeg" alt="자동차이미지">
+    </p>
+    <table border 1px solid >
+        <colgroup>
+            <col width="50%">
+            <col width="30%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>옵션</th>
+                <th>추가가격</th>
+                <th>옵션선택</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>인조가죽시트</td>
+                <td>300000</td>
+                <td>
+                    <input type="checkbox" value="300000" id="opt1" class="opt">   
+                </td>
+            </tr>
+            <tr>
+                <td>네비게이션</td>
+                <td>400000</td>
+                <td>
+                    <input type="checkbox" value="400000" id="opt2" class="opt">   
+                </td>
+            </tr>
+            <tr>
+                <td>썬루프</td>
+                <td>500000</td>
+                <td>
+                    <input type="checkbox" value="500000" id="opt3" class="opt">   
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td id="totalTxt">차량금액(옵션포함)</td>
+                <td colspan="2">
+                    <input type="text" value="20000000" id="total" readonly>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+</body>
+</html>
