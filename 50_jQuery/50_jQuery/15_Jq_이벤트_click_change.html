@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 click, change</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+<script>
+    $(document).ready(function(){
+        //select 이벤트 확인 : click, change --> change 사용
+        //$("#mySelect").click(function(){
+        //    console.log("> select click~~");
+        //});
+        
+        $("#mySelect").change(function(){     //값이 바뀌었을때 change이벤트 발생
+            console.log("> select change 이벤트 발생~~");
+            let selectedValue = $("#mySelect>option:selected").val();       // :selected  :selected된 값만 나오게 필터링
+            $("#selectStr").val(selectedValue); //.val(값) : value속성에 값 설정
+        });
+        
+        //---------------------------
+        //radio 버튼에 대한 이벤트 확인 : click, change ---> change 사용
+//        $(".gender").click(function(){
+//           console.log("--- radio 클릭!!! : " + this.id); 
+//        });
+        
+        $(".gender").change(function(){
+            console.log("--- radio change 이벤트발생!!! : " + this.id); 
+            console.log($(".gender"));
+            let checkedValue = $(".gender:checked").val();
+            $("#radioStr").val(checkedValue);   //.val(값) : value속성에 값 설정
+        });
+        
+        //=============
+        // checkbox 에 대한 이벤트 확인 : click, change -- 관계없다(change 사용)
+//       $(".chk").click(function(){
+//         console.log("--- checkbox 클릭!!! : " + this.id); 
+//        });
+        
+        $(".chk").change(function(){
+            console.log("--- checkbox 이벤트발생!!! : " + this.id);
+            console.log($(".gender"));
+            let chkboxValue = "";
+            $(".chk:checked").each(function(){
+                //this : 현재 처리중인 데이터(JavaScript 객체)
+                //chkboxValue += this.value + " ";  //JavaScript 객체 사용
+                chkboxValue += $(this).val() + " "; //$(this) : jQuery 객체 사용
+            });
+                $("#checkedStr").val(chkboxValue.trim());  //trim : 좌우 공백없애줌
+        });
+    });
+</script>
+</head>
+<body>
+    <form>
+        <select id="mySelect" name="select">
+            <option selected disabled>::선택</option>
+            <option value="Java">자바</option>
+            <option value="JavaScript">자바스크립트</option>
+            <option value="jQuery">제이쿼리</option>
+        </select>
+        <input type="text" name="str" id="selectStr" disabled>
+        <hr>
+        
+        <!-- radio -->
+        <input type="radio" name="gender" value="M" id="gender1" class="gender">
+        <label for="gender1">남자</label>         <!-- for사용하여 radio값과 묶어주기 -->
+        <input type="radio" name="gender" value="F" id="gender2" class="gender">
+        <label for="gender2">여자</label>
+        <input type="text" name="str2" id="radioStr" disabled>
+        <hr>
+        
+        <!-- checkbox -->
+        <input type="checkbox" name="hobby" class="chk" value="football">축구
+        <input type="checkbox" name="hobby" class="chk" value="baseball">야구
+        <input type="checkbox" name="hobby" class="chk" value="basketball">농구
+        <input type="checkbox" name="hobby" class="chk" value="tennis">테니스
+        <input type="text" name="str3" id="checkedStr" disabled>
+        
+        <hr>
+        <input type="submit" value="서버로 전송">
+    </form>
+</body>
+</html>

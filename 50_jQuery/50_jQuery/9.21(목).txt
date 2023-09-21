@@ -1,0 +1,12 @@
+9/21(목)
+
+-select 박스
+selected disabled : 서버쪽으로 결과전송x, 선택불가능
+
+-input 의 disabled : 서버쪽으로 결과전송x 
+
+*이벤트 click, change
+
+click : click되었을 때 click이벤트 발생
+
+change : 값이 바뀌었을때 change이벤트 발생

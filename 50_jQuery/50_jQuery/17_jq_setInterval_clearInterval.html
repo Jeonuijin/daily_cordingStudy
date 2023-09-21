@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>setInterval</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+<script>
+    // Java, HTML, CSS, JavaScript, jQuery 문자열 배열에 저장하고
+    // 1초마다 순차적으로 #myDiv 위치에 출력 setInterval사용
+    $(document).ready(function(){
+        let  subject = ['Java', 'HTML', 'CSS', 'JavaScript', 'jQuery'];
+        //window.setInterval(동작, 시간간격);
+        $("#myDiv").text(subject[0]);
+        
+        // 배열에 문자열을 #myDiv 위치에 출력(setInterval)
+        let i = 0;
+        function subjectVal(){
+            if(i < subject.length){ 
+                $("#myDiv").text(i+1 + "번째 : " + subject[i++]);
+            }else{
+                i = 0;
+            }
+        }
+        
+        let setinterval = setInterval(function () {
+            subjectVal();
+        },1000);
+        
+        //중지 버튼이 클릭되면 과목보여주기 정지처리(clearInterval)
+        $("#stop").click(function(){
+           clearInterval(setinterval);
+        });
+        
+    });
+</script>
+</head>
+<body>
+    <button id="stop">중지</button>
+    <!-- Java, HTML, CSS, JavaScript, jQuery -->
+    <div id="myDiv">Java</div>
+</body>
+</html>
