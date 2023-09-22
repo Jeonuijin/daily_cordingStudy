@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>animate, stop</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+<script>
+     $(document).ready(function(){
+        // .animate({속성값}, 밀리초) : 위치로 이동(밀리초 동안)
+        $("#go").click(function(){
+            console.log("go click~~~");
+            $("#myDiv").animate({left: "+=200", top: "+=200"}, 1000);
+        });
+         
+        $("#back").click(function(){
+            $("#myDiv").animate({left: "-=100", top: "-=100"}, 1000);
+        });
+         
+        $("#stop").click(function(){
+            $("#myDiv").stop();
+        });
+         
+    });
+</script>
+<style>
+    #myDiv { position: absolute; }
+/*    #myDiv { left: 200px; top: 200px; }*/
+</style>
+</head>
+<body>
+    <button id="go">이동</button>
+    <button id="back">반대로 이동</button>
+    <button id="stop">정지</button>
+    <div id="myDiv">
+        <img src="images/image1.gif">
+    </div>
+</body>
+</html>

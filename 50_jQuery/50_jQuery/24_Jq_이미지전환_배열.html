@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>이미지전환</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+<script>
+    // prev, next : 버튼이 클릭되었을때 처리
+    // 이미지 파일명을 배열에 저장해서 사용
+    // let imgNames = ["bimg01.jpg", "bimg02.jpg", ...];
+    //---------------------------
+    //let imgNames = ["bimg01.jpg", "bimg02.jpg", "bimg03.jpg", "bimg04.jpg",
+    //                "bimg05.jpg", "bimg06.jpg", "bimg07.jpg", "bimg08.jpg",
+    //                "bimg09.jpg", "bimg10.jpg",];
+    
+    //배열에 데이터 입력
+    let imgNames = new Array(10);
+    console.log(imgNames.toString());
+    
+    // 내가 한 방법(if문)
+    /*
+    for (let i = 0; i < imgNames.length; i++) {
+        if (i < 10) {
+            imgNames[i] = "bimg0" + (i+1) + ".jpg";
+        }else {
+           imgNames[i] = "bimg" + (i+1) + ".jpg"; 
+        }
+        
+    }
+    */
+    
+    //배열에 데이터 입력 - 선생님
+    for (let i = 0; i < imgNames.length; i++) {
+        //let imgNum = i + 1;   //방법1
+        //imgNum = imgNum < 10 ? "0" + imgNum : imgNum;
+        //imgNames[i] = "img" + imgNum + ".jpg";
+        imgNames[i] = "bimg" + (i+1).toString().padStart(2, "0") + ".jpg"   //방법2
+        //.padStart : 위의 예제에서 padStart(2, "0")은 문자열 "7"을 길이가 2인 문자열로 만들기 위해 앞에 "0"을 추가하도록 지시하고, 길이가 지정된 길이보다 크거나 같으면 아무런 작업을 수행하지 않습니다. 
+    }
+    
+    //배열에 데이터 입력 - 선생님(while문)
+    imgNames = [];
+    
+    while (imgNames.length < 10) {
+        let imgNum = (imgNames.length + 1).toString().padStart(2, "0")
+        imgNames.push("bimg" + imgNum + ".jpg");
+    }
+    
+    //(실습) next, prev 클릭시 이미지 전환
+    $(document).ready(function(){
+        let imgNum = 0;
+        
+        //next 버튼 클릭시 이미지 변경 처리
+         $("#next").click(function(){
+            imgNum++;
+            if (imgNum >= imgNames.length) imgNum = 0;
+            console.log("next 클릭~~~ imgNum : " + imgNum);
+            $("img").prop("src", "images/" + imgNames[imgNum]);
+        });
+        
+        $("#prev").click(function(){
+           imgNum--;
+            if (imgNum < 0) imgNum = imgNames.length-1;
+            console.log("prev 클릭~~~ imgNum : " + imgNum);
+            $("img").prop("src", "images/" + imgNames[imgNum]);
+        });
+        
+    });
+</script>
+<style>
+    div {
+        width: 320px;
+        margin: 0 auto;
+        position: relative;
+    }
+    div > a {
+        /*위치설정*/
+        position: absolute;
+        top: 150px;
+        /*모양(형태), 색상*/
+        width: 50px; height: 50px;
+        background-image: conic-gradient(LavenderBlush, Deeppink, RebeccaPurple
+                                        , Indigo, DarkBlue, black);
+        border-radius: 50%;
+        border: 1px solid gray;
+        /*텍스트 설정*/
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        line-height: 50px; /*세로방향 중앙정렬*/
+        box-shadow: 0 5px black;
+    }
+    
+    #next:active {
+    background-color: darksalmon;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    }
+    
+    #prev:active {
+    background-color: darksalmon;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    }
+    
+    #prev { left: 20px; }
+    #next { right: 20px; }
+</style>
+</head>
+<body>
+    <div>
+        <img src="images/bimg01.jpg" alt="상품이미지">
+        <a id="prev" href="#" >prev</a>
+        <a id="next" href="#" >next</a>
+    </div>
+</body>
+</html>
