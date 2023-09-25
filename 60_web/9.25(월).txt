@@ -1,0 +1,13 @@
+9/22(월)
+
+*Servlet
+
+톰캣 다운로드- 9버전 - zip파일 or 64bit windowzip
+
+이클립스 서버 톰캣으로 열기
+window - preferences => web - css,html,jsp 인코딩방식 utf-8 변경
+					=>General - Workspace 인코딩 utf-8변경
+					
+새파일 - Dynamic Web project - next 후 3번째 페이지에서 Generate web.xml..체크박스 클릭
+
+서블릿 객체생성 
