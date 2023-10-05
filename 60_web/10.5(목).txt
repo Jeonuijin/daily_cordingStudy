@@ -1,0 +1,4 @@
+? 파라미터명 = 값&명칭 = value
+? p = v & p = v
+
+history.back(); : javascript에서 전 페이지로 이동할 때 쓰는 메소드
