@@ -1,0 +1,39 @@
+*액션태그
+servlet으로 변환 후 실행되는 시점에
+액션태그로 연결된 jsp파일이 servlet으로 변환된 후 실행결과가 호출된 쪽으로 들어가 동적으로 응답되어진다.
+jspf파일은 servlet으로 실행되는 파일이 아니기 때문에 액션태그로 사용하지 않는다.
+
+실행되는 결과값을 받기 때문에 jsp파일만 응답이 가능하다. jspf파일은 컴파일X
+
+<h2>액션태그 - jsp:include(파라미터 값 전달)</h2>
+	<jsp:include page="ex01_includee3_param.jsp">
+		<jsp:param value="hong" name="name"/>
+	</jsp:include>
+	
+	value="hong" name="name" : value= 값, name = 파라미터명
+	
+	value값에 다른 값을 붙이고 싶다면 
+	<jsp:param name="name2" value="<%=name + \"-forward1\" %>" />
+	<jsp:param name="age2" value='<%=age + "-forward1" %>' />
+	이런식으로 작성한다. 큰따옴표만 쓰게되면 오류처리.
+	
+	<% request.getRequestDispatcher("ex02_second.jsp").forward(request, response);%>
+	
+	[useBean]
+		<h1>액션태그 jsp:useBean 사용</h1>
+	<jsp:useBean id="person" class="com.mystudy.PersonVO" scope="page" />
+	<jsp:setProperty property="name" name="person"/>
+	
+	property값에 class에서 가져다 쓸 필드명을 쓴다. name이라는 필드명으로 저장된 데이터를찾는다.
+	찾으면 그 데이터를 name="person"변수에 저장된다. name에 저장된 변수는 설정한scope에도 저장되고
+	로컬변수로도 저장이 된다.
+	<jsp:setProperty property="*" name="person"/>
+	이런식으로 property값에 *(모든데이터)를 넣으면 자동으로 모든 데이터를 가져올 수 있다.
+	
+	빈에 저장된 저장값을 표시할때는 <h2>이름(표현식) : <%=person.getName() %></h2>
+	get 메소드를 사용하여 가져온다.
+	
+	
+	<h2>EL getter 사용 데이터 출력</h2>
+	<h2>이름(EL) : ${person.getName() }</h2>
+	=>EL호출시에는 scope상에 데이터가 저장되어 있어야한다.
