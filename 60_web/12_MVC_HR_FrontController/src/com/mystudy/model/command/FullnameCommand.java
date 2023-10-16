@@ -22,6 +22,7 @@ public class FullnameCommand implements Command {
 		
 		//전달받은 이름으로 DB데이터 조회 후 목록페이지로 이동
 		
+		
 		return "fullnameList.jsp";
 	}
 
