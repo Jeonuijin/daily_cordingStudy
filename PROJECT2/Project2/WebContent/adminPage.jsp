@@ -10,7 +10,7 @@
 		location.href = "bookInsert.jsp";
 	}
 	function book_update() {
-		location.href = "controller?type=update";
+		location.href = "bookList";
 	}
 	function book_delete() {
 		location.href = "controller?type=delete";

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>상품 등록</h2>
-     <form action="InserBookcontroller" method="post" enctype="multipart/form-data">
+     <form action="InsertBookcontroller" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td><label for="bookName">책 이름:</label></td>
