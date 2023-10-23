@@ -12,21 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.project.model.dao.adminBookDAO;
 import com.project.model.vo.BookVO;
 
-@WebServlet("/admin/bookList")
-public class BookListController extends HttpServlet{
+@WebServlet("/admin/bookDelete")
+public class BookDeleteController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//DB에서 데이터 가져와서 list.jsp 페이지에서 사용토록 전달
-		//1. DB연결하고 데이터 가져오기
-		List<BookVO> list = adminBookDAO.getList();
-		
-		//2. 응답페이지(list.jsp)에 전달
-		request.setAttribute("list", list);
-		
-		//3. 페이지 전환 - 응답할 페이지(list.jsp)로 포워딩(위임,전가)
-		request.getRequestDispatcher("bookList.jsp").forward(request, response);
 
+		String bookId = request.getParameter("bookId");
+		
+		//2. DB에서 해당 아이디(bookId) 책정보 조회(DAO사용)
+		
+		// DB에 입력(저장) 처리 
+		if (adminBookDAO.delete(bookId) == 1) {
+		    // 성공했을 때 응답 메시지 출력
+			System.out.println("삭제 성공했습니다");
+		    response.sendRedirect("adminPage.jsp");
+		} else {
+		    // 실패했을 때 다른 메시지 출력 또는 오류 처리
+		    response.getWriter().write("저장에 실패했습니다");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

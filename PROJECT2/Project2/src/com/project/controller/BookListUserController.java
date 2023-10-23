@@ -10,24 +10,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.project.model.dao.adminBookDAO;
+import com.project.model.dao.userDAO;
 import com.project.model.vo.BookVO;
 
-@WebServlet("/admin/bookList")
-public class BookListController extends HttpServlet{
-	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//DB에서 데이터 가져와서 list.jsp 페이지에서 사용토록 전달
-		//1. DB연결하고 데이터 가져오기
-		List<BookVO> list = adminBookDAO.getList();
+//유저 책상세정보보기
+@WebServlet("/user/bookListOne")
+public class BookListUserController extends HttpServlet {
+    // ...
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String bookId = request.getParameter("bookId");
+		
+		//2. DB에서 해당 아이디(bookId) 책정보 조회(DAO사용)
+		List<BookVO> list = adminBookDAO.selectBookId(bookId);
 		
 		//2. 응답페이지(list.jsp)에 전달
 		request.setAttribute("list", list);
 		
 		//3. 페이지 전환 - 응답할 페이지(list.jsp)로 포워딩(위임,전가)
-		request.getRequestDispatcher("bookList.jsp").forward(request, response);
+			request.getRequestDispatcher("bookDetail.jsp").forward(request, response);
+    }
 
-	}
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("> ListController doPost() 시작");

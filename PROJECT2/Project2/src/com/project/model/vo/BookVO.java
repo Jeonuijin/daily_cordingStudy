@@ -15,8 +15,23 @@ public class BookVO {
 	private String details;
 	private String bookImage;
 	private String category;
+	private String bookRealImage;
 	
 	
+	public BookVO() {
+		super();
+	}
+	public BookVO(String bookImage, String bookRealImage) {
+		super();
+		this.bookImage = bookImage;
+		this.bookRealImage = bookRealImage;
+	}
+	public String getBookRealImage() {
+		return bookRealImage;
+	}
+	public void setBookRealImage(String bookRealImage) {
+		this.bookRealImage = bookRealImage;
+	}
 	public int getBookId() {
 		return bookId;
 	}
@@ -91,10 +106,10 @@ public class BookVO {
 	}
 	@Override
 	public String toString() {
-		return "BookVO [bookId=" + bookId + ", bookname=" + bookName + ", price=" + price + ", publisher=" + publisher
-				+ ", pubDate=" + pubDate + ", author=" + author + ", grade_avg=" + gradeAvg + ", book_cnt=" + bookCnt
-				+ ", order_cnt=" + orderCnt + ", details=" + details + ", book_image=" + bookImage + ", category="
-				+ category + "]";
+		return "BookVO [bookId=" + bookId + ", bookName=" + bookName + ", price=" + price + ", publisher=" + publisher
+				+ ", pubDate=" + pubDate + ", author=" + author + ", gradeAvg=" + gradeAvg + ", bookCnt=" + bookCnt
+				+ ", orderCnt=" + orderCnt + ", details=" + details + ", bookImage=" + bookImage + ", category="
+				+ category + ", bookRealImage=" + bookRealImage + "]";
 	}
 	
 }

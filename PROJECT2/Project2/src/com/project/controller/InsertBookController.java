@@ -22,14 +22,15 @@ import com.project.model.command.bookUpdateCommand;
 import com.project.model.dao.adminBookDAO;
 import com.project.model.vo.BookVO;
 
-@WebServlet("/InsertBookcontroller")
+@WebServlet("/admin/InsertBook")
 public class InsertBookController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 파일 저장위치
-		String path = "c:/MyStudy/bookImage";
+		String path = this.getServletContext().getRealPath("/upload");
+		System.out.println(path);
 		MultipartRequest mr = new MultipartRequest(request, path, (10 * 1024 * 1024), "UTF-8",
 				new DefaultFileRenamePolicy());
 
@@ -47,15 +48,26 @@ public class InsertBookController extends HttpServlet {
 		vo.setDetails(mr.getParameter("details"));
 		vo.setCategory(mr.getParameter("category"));
 		  
+		
+		 // 파일 업로드 처리
+        String uploadedFileName = mr.getFilesystemName("bookImage");
+        if (uploadedFileName != null) {
+            // 파일이 성공적으로 업로드되었을 때 파일 경로를 저장합니다.
+            String filePath = uploadedFileName;
+            vo.setBookImage(filePath);
+        } else {
+            // 파일 업로드 실패 또는 파일이 선택되지 않았을 때 처리
+            vo.setBookImage(null);
+        }
 		// 파일 업로드 처리
-		if (mr.getFile("bookImage") != null) {
-		    String uploadedFileName = mr.getFile("bookImage").getName();
-		    vo.setBookImage(uploadedFileName);
-		} else {
-		    // 파일 업로드 실패 또는 파일이 선택 되지 않은 경우 처리
-		    vo.setBookImage(null);
-		}
-		 
+//		if (mr.getFile("bookImage") != null) {
+//			String uploadedFileName = mr.getFile("bookImage").getName();
+//		    vo.setBookImage(uploadedFileName);
+//		} else {
+//		    // 파일 업로드 실패 또는 파일이 선택 되지 않은 경우 처리
+//		    vo.setBookImage(null);
+//		}
+//		 
 		System.out.println("> vo datas : " + vo);
 		
 		

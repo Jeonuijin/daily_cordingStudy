@@ -13,7 +13,7 @@ public class adminBookDAO {
 	//상품등록(입력처리)
 	public static int insert (BookVO vo) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.insert("adminBook.insert", vo);
+		int result = ss.insert("Book.insert", vo);
 		ss.close();
 		return result;
 	}
@@ -21,7 +21,7 @@ public class adminBookDAO {
 	//상품리스트 조회
 	public static List<BookVO> getList() {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<BookVO> list = ss.selectList("adminBook.list");
+		List<BookVO> list = ss.selectList("Book.list");
 		ss.close();
 		return list;
 	}
@@ -29,7 +29,7 @@ public class adminBookDAO {
 	//상품리스트 책 아이디로 조회
 		public static List<BookVO> selectBookId(String bookId) {
 			SqlSession ss = DBService.getFactory().openSession();
-			List<BookVO> list = ss.selectList("adminBook.selectBookId", bookId);
+			List<BookVO> list = ss.selectList("Book.selectBookId", bookId);
 			ss.close();
 			return list;
 		}
@@ -37,10 +37,20 @@ public class adminBookDAO {
 	//상품정보수정
 	public static int update(BookVO vo) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.insert("adminBook.update", vo);
+		int result = ss.insert("Book.update", vo);
 		ss.close();
 		return result;
 	}
+	
+	//상품삭제
+	public static int delete(String bookId) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("Book.delete", bookId);
+		ss.close();
+		return result;
+	}
+	
+	//----------------------------------------------------
 }
 
 

@@ -10,22 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.project.model.dao.adminBookDAO;
+import com.project.model.dao.userDAO;
 import com.project.model.vo.BookVO;
 
-@WebServlet("/admin/bookList")
-public class BookListController extends HttpServlet{
+@WebServlet("/user/searchAll")
+public class SearchAllController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//DB에서 데이터 가져와서 list.jsp 페이지에서 사용토록 전달
-		//1. DB연결하고 데이터 가져오기
-		List<BookVO> list = adminBookDAO.getList();
-		
+
+		String search = request.getParameter("search");
+		System.out.println("검색한 값 " + search);
+		//2. DB에서 해당 아이디(bookId) 책정보 조회(DAO사용)
+		List<BookVO> list = userDAO.searchAll(search);
+		System.out.println("검색한 값 으로 정보출력" + list);
 		//2. 응답페이지(list.jsp)에 전달
 		request.setAttribute("list", list);
 		
 		//3. 페이지 전환 - 응답할 페이지(list.jsp)로 포워딩(위임,전가)
-		request.getRequestDispatcher("bookList.jsp").forward(request, response);
+		request.getRequestDispatcher("searchAllResult.jsp").forward(request, response);
 
 	}
 
