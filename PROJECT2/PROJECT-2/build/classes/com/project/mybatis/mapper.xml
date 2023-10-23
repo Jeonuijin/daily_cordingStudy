@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Book">
+
+	<!-- 상품등록 -->
+	<insert id="insert" parameterType="bookVO">
+		INSERT INTO BOOK
+		(Book_ID,
+		BOOKNAME, PRICE, PUBLISHER, PUB_DATE,
+		AUTHOR, BOOK_CNT,
+		ORDER_CNT, DETAILS, BOOK_IMAGE, CATEGORY)
+		VALUES
+		(BOOKID_SEQ.NEXTVAL,
+		#{bookName}, #{price}, #{publisher}, #{pubDate},
+		#{author}, #{bookCnt}, #{orderCnt}, #{details},
+		#{bookImage},
+		#{category})
+	</insert>
+
+	<!-- 전체 책 목록 조회 -->
+	<select id="list" resultType="bookVO">
+		SELECT BOOK_ID, BOOKNAME, PRICE,
+		PUBLISHER, AUTHOR, DETAILS, BOOK_IMAGE, CATEGORY FROM Book ORDER BY
+		Book_ID
+	</select>
+
+	<!-- 책 아이디로 책정보 조회 -->
+	<select id="selectBookId" parameterType="string"
+		resultType="bookVO">
+		SELECT *
+		FROM BOOK
+		WHERE BOOK_ID = #{bookId}
+
+	</select>
+
+	<!-- 책 정보 수정 -->
+	<update id="update" parameterType="bookVO">
+		UPDATE BOOK
+		SET
+		BOOKNAME =
+		#{bookName},
+		PRICE = #{price},
+		PUBLISHER = #{publisher},
+		PUB_DATE =
+		#{pubDate},
+		AUTHOR = #{author},
+		BOOK_CNT = #{bookCnt},
+		DETAILS =
+		#{details},
+		BOOK_IMAGE = #{bookImage},
+		CATEGORY = #{category}
+		WHERE
+		Book_ID = #{bookId}
+	</update>
+
+	<!-- 책 아이디로 책 삭제 -->
+	<delete id="delete" parameterType="string">
+		DELETE FROM BOOK WHERE Book_ID
+		= #{bookId}
+
+	</delete>
+
+
+
+	<!-- 책 아이디로 책정보 조회 -->
+	<select id="searchAll" parameterType="string"
+		resultType="bookVO">
+		SELECT *
+		FROM BOOK
+		WHERE LOWER(BOOKNAME) LIKE '%' ||
+		LOWER(#{search}) || '%'
+		OR LOWER(PUBLISHER) LIKE '%' ||
+		LOWER(#{search}) || '%'
+		OR LOWER(AUTHOR) LIKE '%' ||
+		LOWER(#{search}) ||
+		'%'
+		OR LOWER(DETAILS) LIKE '%' || LOWER(#{search}) || '%'
+		OR
+		LOWER(CATEGORY) LIKE '%' || LOWER(#{search}) || '%'
+	</select>
+
+	<!-- 판매순 높은 책별로 조회(베스트 카테고리) -종합 -->
+	<select id="BestBooklist" resultType="bookVO">
+
+	SELECT *
+	FROM (
+    SELECT *
+    FROM BOOK
+    ORDER BY ORDER_CNT DESC
+	)
+	WHERE ROWNUM &lt;= 5
+
+	</select>
+
+	<!-- 판매순 높은 책별로 조회(베스트 카테고리) -카테고리별 -->
+	<select id="BestBookOne" parameterType="string"
+		resultType="bookVO">
+
+		SELECT *
+		FROM (
+		SELECT *
+		FROM book
+		WHERE CATEGORY= #{category}
+		ORDER BY ORDER_CNT DESC
+		)
+		WHERE ROWNUM &lt;= 5
+
+
+	</select>
+
+	<!-- 신간책별로 조회(베스트 카테고리) -종합 -->
+	<select id="NewBooklist" resultType="bookVO">
+
+		SELECT *
+		FROM (
+		SELECT *
+		FROM BOOK
+		ORDER BY pub_date DESC
+		)
+		WHERE ROWNUM &lt;= 5
+
+	</select>
+	<!-- 신간책별로 조회(베스트 카테고리) -카테고리별 -->
+	<select id="NewBookOne" parameterType="string"
+		resultType="bookVO">
+
+		SELECT *
+		FROM (
+		SELECT *
+		FROM book
+		WHERE CATEGORY = #{category}
+		ORDER BY pub_date DESC
+		)
+		WHERE ROWNUM &lt;= 5
+
+
+	</select>
+
+	<!-- 리뷰,평점 등록 -->
+	<insert id="review" parameterType="BookReviewVO">
+	    INSERT INTO BOOK_REVIEW
+	    (REVIEW_ID, REVIEW_CONTENT, GRADE, BOOK_ID, MEM_ID, REGDATE)
+	    VALUES
+	    (REVIEW_ID_SEQ.NEXTVAL, #{reviewContent}, #{grade}, #{bookId}, #{memId}, SYSDATE)
+	</insert>
+
+	<select id="Reviewlist" resultType="BookReviewVO">
+	SELECT * FROM BOOK_REVIEW 
+	WHERE BOOK_ID = #{bookId}
+	ORDER BY REVIEW_ID DESC
+	</select>
+</mapper>
+
+
+
+
+
