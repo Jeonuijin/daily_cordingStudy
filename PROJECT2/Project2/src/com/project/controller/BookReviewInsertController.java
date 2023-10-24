@@ -32,7 +32,7 @@ public class BookReviewInsertController extends HttpServlet {
 		int grade = Integer.parseInt(request.getParameter("grade"));
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 
-
+  
 		// 여기에서 리뷰를 데이터베이스에 저장하도록 코드를 작성하세요.
 	    // 리뷰 저장에 성공하면 "success"를 반환하고, 실패하면 "failure"를 반환합니다.
 

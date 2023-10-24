@@ -68,6 +68,7 @@ public class SearchBestOneController extends HttpServlet{
 
 		for (BookVO vo : list) {
 		    result.append("{");
+		    result.append("\"bookId\": \"" + vo.getBookId() + "\", ");
 		    result.append("\"category\": \"" + vo.getCategory() + "\", ");
 		    result.append("\"bookName\": \"" + vo.getBookName() + "\", ");
 		    result.append("\"price\": \"" + vo.getPrice() + "\", ");

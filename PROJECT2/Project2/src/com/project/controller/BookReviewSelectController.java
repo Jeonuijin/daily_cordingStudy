@@ -24,13 +24,11 @@ public class BookReviewSelectController extends HttpServlet{
 		System.out.println("::: GetJsonMembersController doGet() 실행~~~");
 		//한글깨짐 방지를 위한 문자타입(UTF-8) 처리
 		response.setContentType("text/html; charset=UTF-8");
-		String type = request.getParameter("type");
-		System.out.println("> type : " + type);
+		String bookId = request.getParameter("bookId");
+		System.out.println("> bookId : " + bookId);
 		
-		
-		//DB 데이터 가져오기
+		List<BookReviewVO> list = userDAO.getReviewList(bookId);
 
-		List<BookReviewVO> list = userDAO.getReviewList();
 		
 		//JSON 형식 문자열 만들고 응답처리
 		// {"list" : [{}, {}, ... , {}] }
@@ -61,7 +59,8 @@ public class BookReviewSelectController extends HttpServlet{
 		for (BookReviewVO vo : list) {
 		    result.append("{");
 		    result.append("\"reviewContent\": \"" + vo.getReviewContent() + "\", ");
-		    result.append("\"getGrade\": \"" + vo.getGrade() + "\", ");
+		    result.append("\"Grade\": \"" + vo.getGrade() + "\", ");
+		    result.append("\"RegDate\": \"" + vo.getRegdate() + "\", ");
 		    result.append("\"memId\": \"" + vo.getMemId() + "\" ");
 		    result.append("}");
 		    

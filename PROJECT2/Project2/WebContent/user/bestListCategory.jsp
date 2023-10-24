@@ -74,6 +74,7 @@ td {
 				$.each(alist, function(index, category){
 					//console.log("this.name : " + this.name);
 					//console.log("member.name : " + member.name);
+					console.log(this.bookId);
 					htmlTag += "<tr>";
 					htmlTag += "<td>" + this.category + "</td>";
 					htmlTag += "<td><a href='bookListOne?bookId=" + this.bookId + "'>" + this.bookName + "</a></td>";

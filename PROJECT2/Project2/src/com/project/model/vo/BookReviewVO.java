@@ -1,12 +1,21 @@
 package com.project.model.vo;
 
+import java.sql.Date;
+
 public class BookReviewVO {
 	private int reviewId;
 	private String reviewContent;
 	private int grade;
 	private int bookId;
 	private String memId;
+	private Date regDate;
 
+	public Date getRegdate() {
+		return regDate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regDate = regdate;
+	}
 	public int getReviewId() {
 		return reviewId;
 	}
@@ -42,7 +51,7 @@ public class BookReviewVO {
 	@Override
 	public String toString() {
 		return "BookReviewVO [reviewId=" + reviewId + ", reviewContent=" + reviewContent + ", grade=" + grade
-				+ ", bookId=" + bookId + ", memId=" + memId + "]";
+				+ ", bookId=" + bookId + ", memId=" + memId + ", regdate=" + regDate + "]";
 	}
 	
 }

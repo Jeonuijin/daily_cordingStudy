@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import java.io.IOException;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -13,12 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.project.model.command.Command;
-import com.project.model.command.DeptCommand;
-
-import com.project.model.command.bookDeleteCommand;
-
-import com.project.model.command.bookUpdateCommand;
 import com.project.model.dao.adminBookDAO;
 import com.project.model.vo.BookVO;
 
@@ -42,7 +37,6 @@ public class InsertBookController extends HttpServlet {
 		vo.setPublisher(mr.getParameter("publisher"));
 		vo.setPubDate(mr.getParameter("pubDate"));
 		vo.setAuthor(mr.getParameter("author"));
-		vo.setGradeAvg(Double.parseDouble(mr.getParameter("gradeAvg")));
 		vo.setBookCnt(Integer.parseInt(mr.getParameter("bookCnt")));
 		vo.setOrderCnt(Integer.parseInt(mr.getParameter("orderCnt")));
 		vo.setDetails(mr.getParameter("details"));
@@ -69,17 +63,18 @@ public class InsertBookController extends HttpServlet {
 //		}
 //		 
 		System.out.println("> vo datas : " + vo);
-		
-		
-		// DB에 입력(저장) 처리 
-		if (adminBookDAO.insert(vo) == 1) {
+		int result = adminBookDAO.insert(vo); // 인서트 메서드 호출 결과를 변수에 저장
+
+		if (result == 1) {
 		    // 성공했을 때 응답 메시지 출력
-			System.out.println("성공했습니다");
-		    response.sendRedirect("adminPage.jsp");
+		    System.out.println("성공했습니다");
+		    request.setAttribute("fileInsert", result);
+		    request.getRequestDispatcher("bookInsert.jsp").forward(request, response);
 		} else {
 		    // 실패했을 때 다른 메시지 출력 또는 오류 처리
-		    response.getWriter().write("저장에 실패했습니다");
+		    response.sendRedirect("bookInsert.jsp");
 		}
+		
 		// 화면전환(목록페이지로 이동 - 첫페이지로 가기) response.sendRedirect("list.jsp");
 		
 

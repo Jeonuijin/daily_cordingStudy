@@ -1,0 +1,17 @@
+<style>
+.common_lnb { 
+    float: right;
+    padding-top: 8px;
+
+}
+#commonHd{
+    margin: 0px;
+    padding: 0px;
+    font-size: 11px;
+    font-family: 'Malgun Gothic', 'Noto Sans KR', 'dotum', 'Helvetica';
+    line-height: 18px;
+    color: #505050;
+    text-align: left;
+}
+
+</style>

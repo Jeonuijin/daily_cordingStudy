@@ -9,10 +9,24 @@ import com.project.model.vo.BookVO;
 import com.project.mybatis.DBService;
 
 public class userDAO {
-	//상품리스트 책 아이디로 조회
+	//통합검색
 	public static List<BookVO> searchAll(String search) {
 		SqlSession ss = DBService.getFactory().openSession();
 		List<BookVO> list = ss.selectList("Book.searchAll", search);
+		ss.close();
+		return list;
+	}
+	//책제목으로 검색
+	public static List<BookVO> searchByTitle(String search) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<BookVO> list = ss.selectList("Book.searchByTitle", search);
+		ss.close();
+		return list;
+	}
+	//작가별검색
+	public static List<BookVO> searchByAuthor(String search) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<BookVO> list = ss.selectList("Book.searchByAuthor", search);
 		ss.close();
 		return list;
 	}
@@ -56,10 +70,11 @@ public class userDAO {
 	}
 
 	//리뷰,평점 조회
-	public static List<BookReviewVO> getReviewList() {
+	public static List<BookReviewVO> getReviewList(String bookId) {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<BookReviewVO> list = ss.selectList("Book.Reviewlist");
+		List<BookReviewVO> list = ss.selectList("Book.Reviewlist", bookId);
 		ss.close();
 		return list;
 	}
+
 }

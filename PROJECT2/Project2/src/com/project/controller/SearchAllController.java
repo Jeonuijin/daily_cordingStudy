@@ -20,9 +20,24 @@ public class SearchAllController extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String search = request.getParameter("search");
+		String searchOption = request.getParameter("searchOption");
+		
 		System.out.println("검색한 값 " + search);
-		//2. DB에서 해당 아이디(bookId) 책정보 조회(DAO사용)
-		List<BookVO> list = userDAO.searchAll(search);
+		List<BookVO> list = null;
+
+		if (search != null && !search.isEmpty()) {
+	        if ("all".equals(searchOption)) {
+	            // 통합검색을 수행하는 메서드 호출
+	            list = userDAO.searchAll(search);
+	        } else if ("title".equals(searchOption)) {
+	            // 제목으로 검색을 수행하는 메서드 호출
+	            list = userDAO.searchByTitle(search);
+	        } else if ("author".equals(searchOption)) {
+	            // 작가별 검색을 수행하는 메서드 호출
+	            list = userDAO.searchByAuthor(search);
+	        }
+	    }
+
 		System.out.println("검색한 값 으로 정보출력" + list);
 		//2. 응답페이지(list.jsp)에 전달
 		request.setAttribute("list", list);

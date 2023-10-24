@@ -4,13 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>책 상세정보</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 
 function loadComments() {
+	 var bookId = "${list[0].bookId}";
     $.ajax("getBookReview",{
         type: "GET",
+        data: { bookId: bookId },
         dataType: "json",
         success: function(data) {
         	
@@ -22,11 +26,12 @@ function loadComments() {
 				//console.log("member.name : " + member.name);
 				htmlTag += "<tr>";
 				htmlTag += "<td>" + this.reviewContent + "</td>";
-				htmlTag += "<td>" + this.getGrade + "</td>";
+				htmlTag += "<td>" + this.Grade + "</td>";
 				htmlTag += "<td>" + this.memId + "</td>";
+				htmlTag += "<td>" + this.RegDate + "</td>";
 				htmlTag += "</tr>";
 			    if (index < alist.length - 1) {
-			        htmlTag += "<tr><td colspan='3'><hr></td></tr>";
+			        htmlTag += "<tr><td colspan='4'><hr></td></tr>";
 			    }
 			
 			});

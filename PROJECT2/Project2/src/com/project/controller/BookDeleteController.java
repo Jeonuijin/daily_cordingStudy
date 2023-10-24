@@ -23,14 +23,18 @@ public class BookDeleteController extends HttpServlet{
 		//2. DB에서 해당 아이디(bookId) 책정보 조회(DAO사용)
 		
 		// DB에 입력(저장) 처리 
-		if (adminBookDAO.delete(bookId) == 1) {
+		int result = adminBookDAO.delete(bookId); // 인서트 메서드 호출 결과를 변수에 저장
+
+		if (result == 1) {
 		    // 성공했을 때 응답 메시지 출력
-			System.out.println("삭제 성공했습니다");
-		    response.sendRedirect("adminPage.jsp");
+		    System.out.println("성공했습니다");
+		    request.setAttribute("fileDelete", result);
+		    request.getRequestDispatcher("bookDelete.jsp").forward(request, response);
 		} else {
 		    // 실패했을 때 다른 메시지 출력 또는 오류 처리
-		    response.getWriter().write("저장에 실패했습니다");
+		    response.sendRedirect("bookDelete.jsp");
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

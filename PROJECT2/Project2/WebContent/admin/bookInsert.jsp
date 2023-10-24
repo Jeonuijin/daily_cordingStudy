@@ -1,10 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>책(상품)등록 페이지</title>
+<script>
+	var fileUploadResult = ${fileUpload};
+
+	if (fileUploadResult > 0) {
+   	 	alert("책 등록 완료");
+   	 	location.href = "adminPage.jsp"
+	} else {
+  		alert("책 등록 실패");
+	}
+	
+	function book_view() {
+		location.href = "bookList";
+	}
+	
+	
+</script>
 </head>
 <body>
 	<h2>상품 등록</h2>
@@ -30,10 +47,6 @@
 			<tr>
 				<td><label for="author">저자:</label></td>
 				<td><input type="text" id="author" name="author" required></td>
-			</tr>
-			<tr>
-				<td><label for="gradeAvg">평균 평점:</label></td>
-				<td><input type="text" id="gradeAvg" name="gradeAvg" required></td>
 			</tr>
 			<tr>
 				<td><label for="bookCnt">재고 수량:</label></td>

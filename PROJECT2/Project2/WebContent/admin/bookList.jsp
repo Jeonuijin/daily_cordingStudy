@@ -30,7 +30,12 @@ function book_delete() {
         alert("삭제할 책을 선택하세요.");
     } else {
         // 선택된 책의 bookId 값을 사용하여 삭제 페이지로 이동합니다.
-        window.location.href = "bookDelete?bookId=" + selectedBook.value;
+        var confirmation = confirm("선택한 책을 삭제하시겠습니까?");
+        
+        if (confirmation) {
+            // "예"를 선택한 경우, 선택된 책의 bookId 값을 사용하여 삭제 페이지로 이동합니다.
+            window.location.href = "bookDelete?bookId=" + selectedBook.value;
+        }
     }
 }
 </script>
@@ -42,6 +47,7 @@ function book_delete() {
 </head>
 <body>
 	<h1>전체 책 리스트</h1>
+	<button onclick="book_insert()">책 등록하기</button>
 	<div class="table-container">
 		<table border="1">
 			<tr>
@@ -70,7 +76,7 @@ function book_delete() {
 			</c:forEach>
 		</table>
 		<div class="button-container">
-			<button onclick="book_insert()">책 등록</button>
+			
 			<button onclick="book_update()">책정보수정</button>
 			<button onclick="book_delete()">책삭제</button>
 		</div>

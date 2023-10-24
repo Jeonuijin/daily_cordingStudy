@@ -32,11 +32,18 @@ img {
 <body>
 	<form action="searchAll" method="get">
 		<div class="search">
+			
 			<input type="text" name="search" placeholder="통합검색">
 			<div class="search-icon" onclick="submitForm()">
 				<img
 					src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
 			</div>
+            <select name="searchOption" id="searchOption">
+                <option value="all">통합검색</option>
+                <option value="title">제목으로 검색</option>
+                <option value="author">작가별 검색</option>
+            </select>
+
 		</div>
 	</form>
 

@@ -52,14 +52,18 @@ public class BookUpdateController extends HttpServlet{
 				
 				
 				// DB에 입력(저장) 처리 
-				if (adminBookDAO.update(vo) == 1) {
+				int result = adminBookDAO.update(vo); // 인서트 메서드 호출 결과를 변수에 저장
+
+				if (result == 1) {
 				    // 성공했을 때 응답 메시지 출력
-					System.out.println("수정 성공했습니다");
-				    resp.sendRedirect("adminPage.jsp");
+				    System.out.println("성공했습니다");
+				    req.setAttribute("fileUpdate", result);
+				    req.getRequestDispatcher("bookUpdate.jsp").forward(req, resp);
 				} else {
 				    // 실패했을 때 다른 메시지 출력 또는 오류 처리
-				    resp.getWriter().write("수정에 실패했습니다");
+				    resp.sendRedirect("bookUpdate.jsp");
 				}
+				
 				// 화면전환(목록페이지로 이동 - 첫페이지로 가기) response.sendRedirect("list.jsp");
 				
 

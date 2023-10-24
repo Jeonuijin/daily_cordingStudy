@@ -9,13 +9,12 @@
 		INSERT INTO BOOK
 		(Book_ID,
 		BOOKNAME, PRICE, PUBLISHER, PUB_DATE,
-		AUTHOR, GRADE_AVG, BOOK_CNT,
+		AUTHOR, BOOK_CNT,
 		ORDER_CNT, DETAILS, BOOK_IMAGE, CATEGORY)
 		VALUES
 		(BOOKID_SEQ.NEXTVAL,
 		#{bookName}, #{price}, #{publisher}, #{pubDate},
-		#{author},
-		#{gradeAvg}, #{bookCnt}, #{orderCnt}, #{details},
+		#{author}, #{bookCnt}, #{orderCnt}, #{details},
 		#{bookImage},
 		#{category})
 	</insert>
@@ -65,7 +64,7 @@
 
 
 
-	<!-- 책 아이디로 책정보 조회 -->
+	<!-- 책 통합검색 조회 -->
 	<select id="searchAll" parameterType="string"
 		resultType="bookVO">
 		SELECT *
@@ -75,11 +74,29 @@
 		OR LOWER(PUBLISHER) LIKE '%' ||
 		LOWER(#{search}) || '%'
 		OR LOWER(AUTHOR) LIKE '%' ||
-		LOWER(#{search}) ||
-		'%'
+		LOWER(#{search}) || '%'
 		OR LOWER(DETAILS) LIKE '%' || LOWER(#{search}) || '%'
-		OR
-		LOWER(CATEGORY) LIKE '%' || LOWER(#{search}) || '%'
+
+	</select>
+
+	<!-- 책 제목으로 책정보 조회 -->
+	<select id="searchByTitle" parameterType="string"
+		resultType="bookVO">
+		SELECT *
+		FROM BOOK
+		WHERE LOWER(BOOKNAME) LIKE '%' ||
+		LOWER(#{search}) || '%'
+		
+	</select>
+	
+	<!-- 책 작가별 책정보 조회 -->
+	<select id="searchByAuthor" parameterType="string"
+		resultType="bookVO">
+		SELECT *
+		FROM BOOK
+		WHERE LOWER(AUTHOR) LIKE '%' ||
+		LOWER(#{search}) || '%'
+		
 	</select>
 
 	<!-- 판매순 높은 책별로 조회(베스트 카테고리) -종합 -->
@@ -141,20 +158,18 @@
 
 	<!-- 리뷰,평점 등록 -->
 	<insert id="review" parameterType="BookReviewVO">
-		INSERT INTO BOOK_REVIEW
-		(REVIEW_ID,
-		REVIEW_CONTENT, GRADE, BOOK_ID, MEM_ID)
-		VALUES
-		(REVIEW_ID_SEQ.NEXTVAL,
-		#{reviewContent}, #{grade}, #{bookId}, #{memId})
+	    INSERT INTO BOOK_REVIEW
+	    (REVIEW_ID, REVIEW_CONTENT, GRADE, BOOK_ID, MEM_ID, REGDATE)
+	    VALUES
+	    (REVIEW_ID_SEQ.NEXTVAL, #{reviewContent}, #{grade}, #{bookId}, #{memId}, SYSDATE)
 	</insert>
 
 	<select id="Reviewlist" resultType="BookReviewVO">
-	SELECT * FROM BOOK_REVIEW  ORDER BY REVIEW_ID  DESC
+	SELECT * FROM BOOK_REVIEW 
+	WHERE BOOK_ID = #{bookId}
+	ORDER BY REVIEW_ID DESC
 	</select>
 </mapper>
-
-
 
 
 

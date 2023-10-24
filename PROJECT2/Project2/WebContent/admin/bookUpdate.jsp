@@ -9,6 +9,16 @@
 <head>
 <meta charset="UTF-8">
 <title>책정보 수정</title>
+<script>
+	var fileUploadResult = ${fileUpdate};
+
+	if (fileUploadResult > 0) {
+   	 	alert("책정보 수정 완료");
+   	 	location.href = "adminPage.jsp"
+	} else {
+  		alert("책정보 수정 실패했습니다. \n 책리스트 화면으로 돌아갑니다.");
+	}
+</script>
 </head>
 
 <body>
