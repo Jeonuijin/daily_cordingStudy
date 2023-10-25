@@ -62,12 +62,18 @@
 			</tr>
 			<tr>
 				<td><label for="bookImage">책 이미지:</label></td>
-				<td><input type="file" id="bookImage" name="bookImage"
-					required></td>
+				<td><input type="file" id="bookImage" name="bookImage" required></td>
 			</tr>
 			<tr>
 				<td><label for="category">카테고리:</label></td>
-				<td><input type="text" id="category" name="category" required></td>
+				<td><select id="category" name="category" required>
+						<option value="문학">문학</option>
+						<option value="인문과학">인문과학</option>
+						<option value="경제경영">경제경영</option>
+						<option value="어린이">어린이</option>
+						<option value="소설">소설</option>
+						<!-- 원하는 카테고리를 추가하실 수 있습니다 -->
+				</select></td>
 			</tr>
 		</table>
 		<input type="submit" value="등록"> <input type="reset"

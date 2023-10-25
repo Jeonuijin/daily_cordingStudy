@@ -17,7 +17,7 @@ public class BookDeleteController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		try {
 		String bookId = request.getParameter("bookId");
 		
 		//2. DB에서 해당 아이디(bookId) 책정보 조회(DAO사용)
@@ -34,13 +34,22 @@ public class BookDeleteController extends HttpServlet{
 		    // 실패했을 때 다른 메시지 출력 또는 오류 처리
 		    response.sendRedirect("bookDelete.jsp");
 		}
-		
+		} catch (IOException e) {
+			 e.printStackTrace();
+			 response.sendRedirect("error.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
 		System.out.println("> ListController doPost() 시작");
+		
 		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 		System.out.println("> ListController doPost() 끝");
+		}catch (IOException e) {
+			 e.printStackTrace();
+			 response.sendRedirect("error.jsp");
+		}
 	}
 }

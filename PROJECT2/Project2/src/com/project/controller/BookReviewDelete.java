@@ -1,6 +1,8 @@
 package com.project.controller;
 
 import java.io.IOException;
+
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,50 +13,56 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.project.model.dao.adminBookDAO;
 import com.project.model.dao.userDAO;
+import com.project.model.vo.BookReviewVO;
 import com.project.model.vo.BookVO;
 
-//카테고리별로 검색하기 컨트롤러
-@WebServlet("/user/searchAll")
-public class SearchAllController extends HttpServlet {
+//등록한 유저 아이디로 해당 댓글삭제하기
+@WebServlet("/user/deleteReview")
+public class BookReviewDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		try {
-			String search = request.getParameter("search");
-			String searchOption = request.getParameter("searchOption");
 
-			System.out.println("검색한 값 " + search);
-			List<BookVO> list = null;
+			System.out.println("::: GetJsonMembersController doGet() 실행~~~");
+			// 한글깨짐 방지를 위한 문자타입(UTF-8) 처리
+			response.setContentType("text/html; charset=UTF-8");
 
-			if (search != null && !search.isEmpty()) {
-				if ("all".equals(searchOption)) {
-					// 통합검색을 수행하는 메서드 호출
-					list = userDAO.searchAll(search);
-				} else if ("title".equals(searchOption)) {
-					// 제목으로 검색을 수행하는 메서드 호출
-					list = userDAO.searchByTitle(search);
-				} else if ("author".equals(searchOption)) {
-					// 작가별 검색을 수행하는 메서드 호출
-					list = userDAO.searchByAuthor(search);
-				}
-			}
+			String memId = request.getParameter("memId");
 
-			System.out.println("검색한 값 으로 정보출력" + list);
-			// 2. 응답페이지(list.jsp)에 전달
-			request.setAttribute("list", list);
+			// 예제: 리뷰 저장 로직 구현 (실제로는 데이터베이스에 저장해야 함)
+			boolean reviewSaved = deleteReviewToDatabase(memId);
 
-			// 3. 페이지 전환 - 응답할 페이지(list.jsp)로 포워딩(위임,전가)
-			request.getRequestDispatcher("searchAllResult.jsp").forward(request, response);
+			// JSON 응답을 생성합니다.
+			String jsonResponse = "{ \"result\": \"" + (reviewSaved ? "success" : "failure") + "\" }";
+
+			// JSON 응답을 클라이언트에 반환
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(jsonResponse);
+	        
+	        
 		} catch (IOException e) {
 			e.printStackTrace();
 			response.sendRedirect("error.jsp");
 		}
 	}
+	
+
+	// 리뷰를 데이터베이스에 저장하는 메서드 (예제)
+	private boolean deleteReviewToDatabase(String memId) {
+		userDAO.deleteReview(memId);
+		
+		return true;
+
+	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		try {
 			System.out.println("> ListController doPost() 시작");
 			request.setCharacterEncoding("UTF-8");

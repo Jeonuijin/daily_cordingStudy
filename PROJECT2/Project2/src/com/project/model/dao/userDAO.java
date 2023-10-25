@@ -76,5 +76,13 @@ public class userDAO {
 		ss.close();
 		return list;
 	}
+	
+	//id값 받아서 자신이 작성한 리뷰 삭제
+	public static int deleteReview(String memId) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.delete("Book.deleteReview", memId);
+		ss.close();
+		return result;
+	}
 
 }

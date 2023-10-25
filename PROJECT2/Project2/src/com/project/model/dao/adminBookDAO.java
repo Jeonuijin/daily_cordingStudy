@@ -45,7 +45,7 @@ public class adminBookDAO {
 	//상품삭제
 	public static int delete(String bookId) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.insert("Book.delete", bookId);
+		int result = ss.delete("Book.delete", bookId);
 		ss.close();
 		return result;
 	}

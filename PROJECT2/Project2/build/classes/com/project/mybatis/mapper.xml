@@ -169,6 +169,13 @@
 	WHERE BOOK_ID = #{bookId}
 	ORDER BY REVIEW_ID DESC
 	</select>
+	
+	<!-- 회원아이디로 해당리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="string">
+		DELETE FROM BOOK_REVIEW WHERE MEM_ID
+		= #{memId}
+
+	</delete>
 </mapper>
 
 

@@ -16,18 +16,20 @@ td {
 }
 </style>
 <script>
+
 	$(document).ready(function(){
+		ajaxGetSelectBestAll();
 		$("#getDataBtn").on("click", ajaxGetSelectBestAll);
 	});
 
 	function ajaxGetSelectBestAll() {
-		alert(">> ajaxGetSelectBestBook() 실행~~");
+		//alert(">> ajaxGetSelectBestBook() 실행~~");
 		
 		$.ajax("getSelectBook?type=best", {
 			type : "get",
 			dataType : "json", //응답 받을 데이터 타입(형식)
 			success : function(respData){
-				alert(">> Ajax 처리 성공 - 응답받은 데이터 : " + respData);
+				//alert(">> Ajax 처리 성공 - 응답받은 데이터 : " + respData);
 				console.log(respData);
 				console.log(respData.list);
 				
@@ -37,14 +39,32 @@ td {
 				$.each(alist, function(index, book){
 					//console.log("this.name : " + this.name);
 					//console.log("member.name : " + member.name);
+					 // 이미지 크기 변경
+                	let image = new Image();
+               		 image.src = '/Project2/upload/' + this.bookImage;
+               		 let maxWidth = 100; // 원하는 최대 너비
+              		 let maxHeight = 100; // 원하는 최대 높이
+					
+              		 //if문 사용해서 이미지의 원래크기를 최대 너비, 높이에 맞추기
+	                if (image.width > maxWidth) {
+	                    image.height *= maxWidth / image.width;
+	                    image.width = maxWidth;
+	                }
+	
+	                if (image.height > maxHeight) {
+	                    image.width *= maxHeight / image.height;
+	                    image.height = maxHeight;
+	                }
+	                
+	                let imageTag = "<img src='/Project2/upload/" + this.bookImage + "' alt='Image' width='" + image.width + "' height='" + image.height + "'>";
 					htmlTag += "<tr>";
-					htmlTag += "<td>" + this.category + "</td>";
+					htmlTag += "<td>" + imageTag + "</td>";
 					htmlTag += "<td><a href='bookListOne?bookId=" + this.bookId + "'>" + this.bookName + "</td>";
 					htmlTag += "<td>" + this.price + "</td>";
 					htmlTag += "<td>" + this.publisher + "</td>";
 					htmlTag += "<td>" + this.author + "</td>";
 					htmlTag += "<td>" + this.details + "</td>";
-					htmlTag += "<td><img src='/Project2/upload/" + this.bookImage + "' alt='Image'></td>";
+	                
 					htmlTag += "</tr>";
 				});
 				$("#dispData").html(htmlTag);
@@ -59,8 +79,8 @@ td {
 	}
 	
 	function ajaxGetSelectBestOne(category) {
-		alert(">> getJsonMembersName 실행~~ 이름 : " + category);
-		alert(">> encodeURIComponent(name) : " + encodeURIComponent(category));
+		//alert(">> getJsonMembersName 실행~~ 이름 : " + category);
+		//alert(">> encodeURIComponent(name) : " + encodeURIComponent(category));
 		
 		$.ajax("getSelectBestOne?type=best", {
 			type : "get",
@@ -68,21 +88,38 @@ td {
 			dataType : "json", //응답 받는 데이터 타입
 			success : function(data) {
 				
-				alert("Ajax 처리 성공 - 응답받은 데이터 : " + data);
+				//alert("Ajax 처리 성공 - 응답받은 데이터 : " + data);
 				let htmlTag = "";
 				let alist = data.list; 
 				$.each(alist, function(index, category){
 					//console.log("this.name : " + this.name);
 					//console.log("member.name : " + member.name);
+					let image = new Image();
+               		 image.src = '/Project2/upload/' + this.bookImage;
+               		 let maxWidth = 100; // 원하는 최대 너비
+              		 let maxHeight = 100; // 원하는 최대 높이
+					
+              		 //if문 사용해서 이미지의 원래크기를 최대 너비, 높이에 맞추기
+	                if (image.width > maxWidth) {
+	                    image.height *= maxWidth / image.width;
+	                    image.width = maxWidth;
+	                }
+	
+	                if (image.height > maxHeight) {
+	                    image.width *= maxHeight / image.height;
+	                    image.height = maxHeight;
+	                }
+	                
+	                let imageTag = "<img src='/Project2/upload/" + this.bookImage + "' alt='Image' width='" + image.width + "' height='" + image.height + "'>";
 					console.log(this.bookId);
 					htmlTag += "<tr>";
-					htmlTag += "<td>" + this.category + "</td>";
+					htmlTag += "<td>" + imageTag + "</td>";
 					htmlTag += "<td><a href='bookListOne?bookId=" + this.bookId + "'>" + this.bookName + "</a></td>";
-					htmlTag += "<td>" + this.price + "</td>";
+					 htmlTag += "<td>" + this.price + " 원 <button type='button' id='inprice' class='btn btn-primary btn-block'>찜</button><button type='button' id='inprice' class='btn btn-secondary btn-block'>장바구니</button></td>";
 					htmlTag += "<td>" + this.publisher + "</td>";
 					htmlTag += "<td>" + this.author + "</td>";
 					htmlTag += "<td>" + this.details + "</td>";
-					htmlTag += "<td><img src='/Project2/upload/" + this.bookImage + "' alt='Image'></td>";
+
 					htmlTag += "</tr>";
 				});
 				$("#dispData").html(htmlTag);
@@ -100,38 +137,64 @@ td {
 <title>베스트 도서 카테고리</title>
 
 </head>
-<body>
-	<h2>알라딩 베스트셀러입니다</h2>
-	<table id="book">
-		<tbody>
-			<tr>
-				<td><button id="getDataBtn">종합</button></td>
-			</tr>
-			<tr>
-				<td><button onclick="ajaxGetSelectBestOne('인문과학')">인문과학</button></td>
-			</tr>
-			<tr>
-				<td><button onclick="ajaxGetSelectBestOne('소설')">소설</button></td>
-			</tr>
-			<tr>
-				<td><button onclick="ajaxGetSelectBestOne('어린이')">어린이</button></td>
-			</tr>
-			<tr>
-				<td><button onclick="ajaxGetSelectBestOne('경제경영')">경제경영</button></td>
-			</tr>
-		</tbody>
-	</table>
-	<table border="1">
-		<tr>
-			<th>카테고리</th>
-			<th>책이름</th>
-			<th>가격</th>
-			<th>출판사</th>
-			<th>작가</th>
-			<th>책설명</th>
-			<th>책이미지</th>
-		</tr>
-		<tbody id="dispData"></tbody>
-	</table>
+<style>
+	button:hover {
+    background-color: #285a34;
+    color: #eee;
+	}
+	table {
+	text-align: center;
+
+	}
+</style>
+<body>	
+	
+	<%@ include file="category.jsp" %>
+
+	<div class="inner mt-5">	
+	
+		<div class="row">
+			<div class="col-3">
+				<ul class="nav nav-pills nav-fill flex-column" style="background-color: #f7f8f9;"  id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+							<button class="nav-link active btn-lg btn-block" >베스트셀러</button>
+					</li>
+					<li class="nav-item" role="presentation">
+							<button class="nav-link btn-lg btn-block" id="getDataBtn">종합</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link btn-lg btn-block" onclick="ajaxGetSelectBestOne('인문과학')">인문과학</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link btn-lg btn-block" onclick="ajaxGetSelectBestOne('소설')">소설</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link btn-lg btn-block" onclick="ajaxGetSelectBestOne('어린이')">어린이</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link btn-lg btn-block" onclick="ajaxGetSelectBestOne('경제경영')">경제경영</button>
+					</li>
+				</ul>
+			</div>
+			<table class="table table-hover col-9" border="1">
+				<tr class="thead-light">
+					<th>책이미지</th>
+					<th>책이름</th>
+					<th>가격</th>
+					<th>출판사</th>
+					<th>작가</th>
+					<th>책설명</th>
+					
+				</tr>
+				<tbody id="dispData"></tbody>
+			</table>
+		</div>
+	</div>
+	
+	<style>
+	.nav-pills .nav-link.active {background-color: #285a34; }
+	.table td{vertical-align: middle;}
+	#inprice { font-size: 12px;  padding: 5px 5px 5px 5px; margin-top: 10px; }
+	</style>
 </body>
 </html>
